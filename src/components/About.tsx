@@ -6,9 +6,12 @@ const About = () => {
       <div className="about-me">
         <h3 className="title">About Me</h3>
         <p className="para">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quis
-          dolores numquam iusto Ratione earum ducimus autem id iure pariatur
-          dolorum quae maiores.
+          I'm <strong>Bhuvan Somisetty</strong>, a CSE AI/ML student with a
+          strong interest in building meaningful, user-focused technology. I
+          enjoy learning fast, solving real problems, and improving every day
+          through development, design, and open-source collaboration. My goal is
+          to grow into a developer who creates clean, impactful, and
+          future-ready digital experiences.
         </p>
       </div>
     </div>

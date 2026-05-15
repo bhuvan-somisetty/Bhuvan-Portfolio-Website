@@ -87,11 +87,11 @@ const WhatIDo = () => {
             <div className="what-corner"></div>
 
             <div className="what-content-in">
-              <h3>DEVELOP</h3>
+              <h3>BUILD</h3>
               <h4>Description</h4>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-                quia aliquid laboriosam ducimus sit molestiae.
+                Turning ideas into scalable digital products through clean
+                code, backend systems, APIs, and practical problem-solving.
               </p>
               <h5>Skillset & tools</h5>
               <div className="what-content-flex">
@@ -128,11 +128,12 @@ const WhatIDo = () => {
             </div>
             <div className="what-corner"></div>
             <div className="what-content-in">
-              <h3>DESIGN</h3>
+              <h3>CREATE</h3>
               <h4>Description</h4>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-                quia aliquid laboriosam ducimus sit molestiae
+                Designing modern, user-friendly, and meaningful digital
+                experiences with clarity, simplicity, and a strong focus on
+                impact.
               </p>
               <h5>Skillset & tools</h5>
               <div className="what-content-flex">

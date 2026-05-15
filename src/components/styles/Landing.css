@@ -158,7 +158,7 @@
 }
 .landing-intro {
   position: absolute;
-  z-index: 9;
+  z-index: 10;
   top: 12%;
   left: 0;
 }
@@ -189,7 +189,7 @@
   transform: translateX(50%);
   bottom: 40px;
   top: inherit;
-  z-index: 9;
+  z-index: 10;
 }
 .landing-info h3 {
   font-size: 22px;
@@ -230,20 +230,7 @@ h2.landing-info-h2 {
   position: absolute;
   top: 0;
 }
-.landing-info-h2::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 120%;
-  z-index: 3;
-  background-image: linear-gradient(
-    0deg,
-    var(--backgroundColor) 40%,
-    rgba(0, 0, 0, 0) 110%
-  );
-  top: 0;
-  left: 0;
-}
+/* Removed .landing-info-h2::after to fix obscured text */
 @media screen and (min-width: 500px) {
   .landing-circle2 {
     display: block;
@@ -295,8 +282,11 @@ h2.landing-info-h2 {
   .character-model {
     height: 100vh;
     bottom: 0;
-    z-index: 11;
+    z-index: 0;
     position: fixed;
+    left: 0;
+    width: 100%;
+    transform: none;
   }
   .character-model::after,
   .character-model::before {

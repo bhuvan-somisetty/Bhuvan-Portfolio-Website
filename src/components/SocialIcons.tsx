@@ -2,7 +2,6 @@ import {
   FaGithub,
   FaInstagram,
   FaLinkedinIn,
-  FaXTwitter,
 } from "react-icons/fa6";
 import "./styles/SocialIcons.css";
 import { TbNotes } from "react-icons/tb";
@@ -12,6 +11,20 @@ import HoverLinks from "./HoverLinks";
 const SocialIcons = () => {
   useEffect(() => {
     const social = document.getElementById("social") as HTMLElement;
+    const iconsSection = document.querySelector(".icons-section") as HTMLElement;
+
+    // Hide social bar when TechStack is in view
+    const handleScroll = () => {
+      const techstack = document.querySelector(".techstack-section");
+      if (!techstack || !iconsSection) return;
+      const rect = techstack.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.8) {
+        iconsSection.classList.add("icons-hidden");
+      } else {
+        iconsSection.classList.remove("icons-hidden");
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     social.querySelectorAll("span").forEach((item) => {
       const elem = item as HTMLElement;
@@ -26,17 +39,14 @@ const SocialIcons = () => {
       const updatePosition = () => {
         currentX += (mouseX - currentX) * 0.1;
         currentY += (mouseY - currentY) * 0.1;
-
         link.style.setProperty("--siLeft", `${currentX}px`);
         link.style.setProperty("--siTop", `${currentY}px`);
-
         requestAnimationFrame(updatePosition);
       };
 
       const onMouseMove = (e: MouseEvent) => {
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-
         if (x < 40 && x > 10 && y < 40 && y > 5) {
           mouseX = x;
           mouseY = y;
@@ -47,35 +57,32 @@ const SocialIcons = () => {
       };
 
       document.addEventListener("mousemove", onMouseMove);
-
       updatePosition();
-
       return () => {
         elem.removeEventListener("mousemove", onMouseMove);
       };
     });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
     <div className="icons-section">
       <div className="social-icons" data-cursor="icons" id="social">
         <span>
-          <a href="https://github.com" target="_blank">
+          <a href="https://github.com/bhuvan-somisetty" target="_blank">
             <FaGithub />
           </a>
         </span>
         <span>
-          <a href="https://www.linkedin.com" target="_blank">
+          <a href="https://www.linkedin.com/in/bhuvan-somisetty-951276362/" target="_blank">
             <FaLinkedinIn />
           </a>
         </span>
         <span>
-          <a href="https://x.com" target="_blank">
-            <FaXTwitter />
-          </a>
-        </span>
-        <span>
-          <a href="https://www.instagram.com" target="_blank">
+          <a href="https://www.instagram.com/your_bhu1?igsh=MWQ5dHF2OHU0Ymw2cw==" target="_blank">
             <FaInstagram />
           </a>
         </span>

@@ -5,8 +5,8 @@ const Career = () => {
     <div className="career-section section-container">
       <div className="career-container">
         <h2>
-          My career <span>&</span>
-          <br /> experience
+          My Learning <span>&</span>
+          <br /> Journey
         </h2>
         <div className="career-info">
           <div className="career-timeline">
@@ -15,43 +15,41 @@ const Career = () => {
           <div className="career-info-box">
             <div className="career-info-in">
               <div className="career-role">
-                <h4>Position In Company</h4>
-                <h5>Company Name</h5>
+                <h4>RGM International School</h4>
+                <h5>Secondary Education</h5>
               </div>
-              <h3>20XX</h3>
+              <h3>2023</h3>
             </div>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
-              labore sit non ipsum temporibus quidem, deserunt eaque officiis
-              mollitia ratione suscipit repellat.
+              Completed my Class 10 foundation with focus on academics,
+              discipline, and early interest in technology.
             </p>
           </div>
           <div className="career-info-box">
             <div className="career-info-in">
               <div className="career-role">
-                <h4>Position In Company</h4>
-                <h5>Company Name</h5>
+                <h4>Narayana Junior College</h4>
+                <h5>Intermediate Education</h5>
               </div>
-              <h3>20XX</h3>
+              <h3>2025</h3>
             </div>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
-              labore sit non ipsum temporibus quidem, deserunt eaque officiis
-              mollitia ratione suscipit repellat.
+              Completed Intermediate education with a strong base in
+              problem-solving, logical thinking, and science fundamentals.
             </p>
           </div>
           <div className="career-info-box">
             <div className="career-info-in">
               <div className="career-role">
-                <h4>Position In Company</h4>
-                <h5>Company Name</h5>
+                <h4>Polaris School of Technology</h4>
+                <h5>B.Tech CSE AI/ML</h5>
               </div>
-              <h3>NOW</h3>
+              <h3 className="year-present">2025 – Present</h3>
             </div>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
-              labore sit non ipsum temporibus quidem, deserunt eaque officiis
-              mollitia ratione suscipit repellat.
+              Currently pursuing B.Tech CSE AI/ML, building skills in software
+              development, AI/ML, open source, backend systems, and real-world
+              projects.
             </p>
           </div>
         </div>

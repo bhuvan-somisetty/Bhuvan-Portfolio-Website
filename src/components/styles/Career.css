@@ -53,10 +53,18 @@
   gap: 50px;
 }
 .career-info h3 {
-  font-size: 48px;
+  font-size: 38px;
   margin: 0;
   font-weight: 500;
   line-height: 45px;
+  white-space: nowrap;
+}
+
+.year-present {
+  font-size: 24px !important;
+  line-height: 45px;
+  white-space: nowrap;
+  align-self: center;
 }
 
 .career-info h4 {

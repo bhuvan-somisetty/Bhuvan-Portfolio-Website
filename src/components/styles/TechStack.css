@@ -1,0 +1,219 @@
+/* ── Section wrapper ─────────────────────────────────────── */
+.techstack-section {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  margin-top: 120px;
+  padding: 100px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  background-color: var(--backgroundColor);
+}
+
+/* Subtle radial glow */
+.techstack-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 60% 50% at 50% 50%,
+    rgba(122, 64, 255, 0.07) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.techstack-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 90%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+
+/* ── Heading ─────────────────────────────────────────────── */
+.techstack-title {
+  font-size: clamp(40px, 5vw, 70px);
+  font-weight: 400;
+  text-align: center;
+  background: linear-gradient(0deg, #7f40ff, #ffffff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.techstack-title span {
+  font-weight: 600;
+}
+
+.techstack-subtitle {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.38);
+  text-align: center;
+  margin: 0 0 48px;
+  letter-spacing: 0.4px;
+  max-width: 560px;
+}
+
+/* ── Bubble grid ─────────────────────────────────────────── */
+.techstack-bubbles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 22px 18px;
+  width: 100%;
+}
+
+/* ── Individual bubble ───────────────────────────────────── */
+.tech-bubble {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  cursor: default;
+  animation: bubbleFloat 4s ease-in-out infinite;
+}
+
+/* Stagger durations so bubbles don't all move together */
+.tech-bubble:nth-child(2n)   { animation-duration: 4.4s; }
+.tech-bubble:nth-child(3n)   { animation-duration: 3.7s; }
+.tech-bubble:nth-child(4n)   { animation-duration: 5s;   }
+.tech-bubble:nth-child(5n)   { animation-duration: 4.8s; }
+.tech-bubble:nth-child(7n)   { animation-duration: 3.5s; }
+
+/* ── Bubble circle ───────────────────────────────────────── */
+.tech-bubble-inner {
+  --bubble-color: #a064ff;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(160, 100, 255, 0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease,
+    background 0.35s ease;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  will-change: transform;
+}
+
+/* Logo bubble image */
+.tech-bubble.has-logo .tech-bubble-inner img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.1));
+  transition: filter 0.3s ease, transform 0.3s ease;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Text icon for skills without logos */
+.tech-text-icon {
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+  padding: 0 6px;
+  text-transform: uppercase;
+  filter: drop-shadow(0 0 6px currentColor);
+  transition: filter 0.3s ease;
+}
+
+/* ── Hover glow ──────────────────────────────────────────── */
+.tech-bubble:hover .tech-bubble-inner {
+  border-color: color-mix(in srgb, var(--bubble-color) 70%, transparent);
+  background: color-mix(in srgb, var(--bubble-color) 8%, transparent);
+  box-shadow:
+    0 0 18px color-mix(in srgb, var(--bubble-color) 30%, transparent),
+    0 0 50px color-mix(in srgb, var(--bubble-color) 12%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transform: scale(1.14) translateY(-5px);
+}
+
+.tech-bubble:hover .tech-bubble-inner img {
+  filter: drop-shadow(0 0 8px rgba(200, 160, 255, 0.6));
+  transform: scale(1.06);
+}
+
+.tech-bubble:hover .tech-text-icon {
+  filter: drop-shadow(0 0 10px currentColor);
+}
+
+/* ── Label ───────────────────────────────────────────────── */
+.tech-label {
+  font-size: 10.5px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.42);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-align: center;
+  max-width: 80px;
+  transition: color 0.3s ease;
+  line-height: 1.3;
+}
+
+.tech-bubble:hover .tech-label {
+  color: rgba(200, 160, 255, 0.9);
+}
+
+/* ── Float animation ─────────────────────────────────────── */
+@keyframes bubbleFloat {
+  0%, 100% { transform: translateY(0px);   }
+  50%       { transform: translateY(-9px);  }
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .techstack-section {
+    padding: 80px 0 100px;
+  }
+  .techstack-bubbles {
+    gap: 18px 14px;
+  }
+  .tech-bubble-inner {
+    width: 68px;
+    height: 68px;
+  }
+  .tech-bubble.has-logo .tech-bubble-inner img {
+    width: 32px;
+    height: 32px;
+  }
+  .tech-text-icon {
+    font-size: 9.5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .techstack-bubbles {
+    gap: 14px 10px;
+  }
+  .tech-bubble-inner {
+    width: 58px;
+    height: 58px;
+  }
+  .tech-bubble.has-logo .tech-bubble-inner img {
+    width: 26px;
+    height: 26px;
+  }
+  .tech-label {
+    font-size: 9px;
+    max-width: 60px;
+  }
+}

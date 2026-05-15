@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(npm run *)",
+      "PowerShell(npm install *)",
+      "PowerShell(npx vite --host 2>&1 | Select-Object -First 20)",
+      "PowerShell(.\\\\node_modules\\\\.bin\\\\vite --version)",
+      "PowerShell(.\\\\node_modules\\\\.bin\\\\vite --host)",
+      "PowerShell(robocopy *)"
+    ]
+  }
+}

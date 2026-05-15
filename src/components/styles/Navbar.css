@@ -45,6 +45,24 @@
   font-size: 14px;
   letter-spacing: 0.2px;
 }
+
+/* BS brand mark */
+.navbar-logo {
+  font-size: 20px !important;
+  font-weight: 800;
+  letter-spacing: 2px;
+  background: linear-gradient(135deg, #ffffff 30%, #a064ff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  text-shadow: none;
+  transition: filter 0.3s ease;
+}
+
+.navbar-logo:hover {
+  filter: drop-shadow(0 0 10px rgba(160, 100, 255, 0.7));
+}
 @media only screen and (min-width: 500px) {
   .header {
     padding: 20px 0px;

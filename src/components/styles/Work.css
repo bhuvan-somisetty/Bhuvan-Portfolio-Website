@@ -6,12 +6,22 @@
 .work-section h2 > span {
   color: var(--accentColor);
 }
+
+/* Guarantee GSAP pin spacer for Work is never transparent */
+.gsap-pin-spacer:has(#work) {
+  background-color: #0b080c !important;
+  z-index: 20 !important;
+}
+
 .work-section {
-  transition: 0s;
   height: 100vh;
   box-sizing: border-box;
-  will-change: transform;
+  position: relative;
+  z-index: 20;
+  background-color: var(--backgroundColor);
+  overflow: hidden;
 }
+
 .work-container {
   margin: auto;
   display: flex;
@@ -128,6 +138,10 @@
 .work-image img {
   max-width: 100%;
   max-height: 350px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
 }
 @media only screen and (max-height: 900px) {
   .work-image img {

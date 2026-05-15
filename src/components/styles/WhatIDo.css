@@ -1,8 +1,7 @@
 .whatIDO {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  place-items: center;
   position: relative;
   opacity: 1;
   height: 100vh;
@@ -10,20 +9,32 @@
   max-width: 1920px;
   margin: auto;
   z-index: 9;
+  padding-top: 60px;
+  box-sizing: border-box;
 }
 .what-box {
   width: 50%;
   display: flex;
-  justify-content: center;
   position: relative;
   z-index: 9;
+}
+
+.what-box:nth-child(1) {
+  justify-content: flex-start;
+  padding-left: 2vw; /* Keep text safely on the left away from the character */
+}
+
+.what-box:nth-child(2) {
+  justify-content: center;
 }
 .what-box h2 {
   font-size: calc(4vw + 25px);
   line-height: calc(4vw + 20px);
   font-weight: 600;
-  margin-right: 10%;
-  margin-bottom: 100px;
+  margin-right: auto;
+  margin-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .hat-h2 {
@@ -34,8 +45,8 @@
 }
 .what-box-in {
   flex-direction: column;
-  height: 500px;
-  margin-left: 200px;
+  height: 580px;
+  margin-left: 100px;
   position: relative;
   display: none;
 }
