@@ -36,7 +36,7 @@ const Navbar = () => {
       });
     });
     window.addEventListener("resize", () => {
-      ScrollSmoother.refresh(true);
+      ScrollTrigger.refresh(true);
     });
   }, []);
   return (

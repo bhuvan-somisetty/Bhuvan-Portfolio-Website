@@ -75,7 +75,8 @@ export function initialFX() {
   // Animations for deleted text elements have been removed
 }
 
-function LoopText(Text1: SplitText, Text2: SplitText) {
+// Retained for potential future use – prefixed to suppress unused-locals
+function _LoopText(Text1: SplitText, Text2: SplitText) {
   var tl = gsap.timeline({ repeat: -1, repeatDelay: 1 });
   const delay = 4;
   const delay2 = delay * 2 + 1;
