@@ -11,7 +11,6 @@ interface Project {
   category: string;
   about: string;
   image: string;
-  techStack: string[];
   link?: string;
 }
 
@@ -22,7 +21,6 @@ const projects: Project[] = [
     about:
       "A campus club management system for managing clubs, events, announcements, attendance, and QR-based event check-ins.",
     image: "/images/01_clubsphere_card.jpg",
-    techStack: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
   },
   {
     name: "AlphaGuard AI",
@@ -30,7 +28,6 @@ const projects: Project[] = [
     about:
       "An AI-powered safety platform focused on smart monitoring, behavior insights, alerts, and parent dashboard controls.",
     image: "/images/02_alphaguard_card.jpg",
-    techStack: ["Python", "FastAPI", "React", "Tailwind CSS", "OpenAI API"],
   },
   {
     name: "QR Complaint & Feedback System",
@@ -38,7 +35,6 @@ const projects: Project[] = [
     about:
       "A QR-based feedback system that helps students submit hostel and mess complaints with category-wise tracking and admin review.",
     image: "/images/03_qr_feedback_card.jpg",
-    techStack: ["React", "Node.js", "Express", "MySQL", "Tailwind CSS"],
   },
   {
     name: "Open Source Contributions",
@@ -46,7 +42,6 @@ const projects: Project[] = [
     about:
       "Contribution work across Hiero SDK, Harbor Satellite, and Jaeger UI involving pull requests, documentation, workflows, API design, and developer experience.",
     image: "/images/04_open_source_card.jpg",
-    techStack: ["GitHub Actions", "Go", "TypeScript", "Jaeger UI"],
   },
   {
     name: "Alarm & Reminder API System",
@@ -54,7 +49,6 @@ const projects: Project[] = [
     about:
       "A Python-based reminder and alarm system built with backend logic, recurring schedules, API-style structure, and modular task management.",
     image: "/images/04_alarm_api_card.jpg",
-    techStack: ["Python", "FastAPI", "SQLite", "Celery", "Redis"],
   },
   {
     name: "Nexaris",
@@ -62,7 +56,6 @@ const projects: Project[] = [
     about:
       "A premium next-generation shopping platform featuring real-time product search, dark-themed responsive design, and modular checkout flows.",
     image: "/images/06_nexaris_card.webp",
-    techStack: ["React", "TypeScript", "Vite", "Tailwind CSS", "Redux Toolkit"],
   },
   {
     name: "ResumeIQ Analyzer",
@@ -70,7 +63,6 @@ const projects: Project[] = [
     about:
       "An intelligent platform that analyzes resumes against job descriptions, calculating instant ATS scores and providing recruiter-grade AI rewrites.",
     image: "/images/07_resumeiq_card.webp",
-    techStack: ["React", "TypeScript", "Python", "FastAPI", "OpenAI API"],
   },
   {
     name: "MovieApp Final",
@@ -78,7 +70,6 @@ const projects: Project[] = [
     about:
       "A cross-platform mobile application utilizing TMDB API to discover, search, and explore movies with a premium dark-themed UI and detailed cast information.",
     image: "/images/08_movieapp_card.webp",
-    techStack: ["React Native", "Expo", "JavaScript", "TMDB API"],
   },
 ];
 
@@ -200,16 +191,6 @@ const Work = () => {
                 </div>
                 <h4>About Project</h4>
                 <p>{proj.about}</p>
-
-                {proj.techStack && (
-                  <div className="work-tech-stack" style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginTop: "12px" }}>
-                    {proj.techStack.map((tech) => (
-                      <span key={tech} style={{ fontSize: "11px", fontWeight: 300, color: "var(--accentColor)", background: "rgba(194, 164, 255, 0.08)", border: "1px solid rgba(194, 164, 255, 0.15)", padding: "3px 8px", borderRadius: "4px" }}>
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                )}
 
                 {proj.link && (
                   <a
