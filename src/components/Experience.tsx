@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { smoother } from "./Navbar";
 import "./styles/Experience.css";
@@ -24,8 +25,6 @@ const Experience = () => {
     pages: [],
     currentPageIndex: 0,
   });
-
-  const [zoomScale, setZoomScale] = useState<number>(1.0);
 
   // Close modal on escape key press and lock/unlock scroll
   useEffect(() => {
@@ -59,7 +58,6 @@ const Experience = () => {
       pages: internship.offerLetterPages,
       currentPageIndex: 0,
     });
-    setZoomScale(1.0);
   };
 
   const closeModal = () => {
@@ -72,7 +70,6 @@ const Experience = () => {
         ...prev,
         currentPageIndex: prev.currentPageIndex + 1,
       }));
-      setZoomScale(1.0);
     }
   };
 
@@ -82,20 +79,7 @@ const Experience = () => {
         ...prev,
         currentPageIndex: prev.currentPageIndex - 1,
       }));
-      setZoomScale(1.0);
     }
-  };
-
-  const zoomIn = () => {
-    setZoomScale((prev) => Math.min(prev + 0.25, 2.5));
-  };
-
-  const zoomOut = () => {
-    setZoomScale((prev) => Math.max(prev - 0.25, 1.0));
-  };
-
-  const resetZoom = () => {
-    setZoomScale(1.0);
   };
 
   const handleDownload = () => {
@@ -108,6 +92,7 @@ const Experience = () => {
     link.click();
     document.body.removeChild(link);
   };
+
 
   // Sleek SVG Logos
   const NeoNexusLogo = (
@@ -265,150 +250,133 @@ const Experience = () => {
         </div>
       </div>
 
-      {/* Offer Letter Lightbox Modal */}
-      <AnimatePresence>
-        {modalState.isOpen && (
-          <motion.div
-            className="offer-modal-overlay"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={closeModal}
-          >
+      {/* Offer Letter Lightbox Modal rendered via Portal outside layout transforms */}
+      {createPortal(
+        <AnimatePresence>
+          {modalState.isOpen && (
             <motion.div
-              className="offer-modal-content"
-              initial={{ scale: 0.92, opacity: 0, y: 15 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.92, opacity: 0, y: 15 }}
-              transition={{ type: "spring", duration: 0.45 }}
-              onClick={(e) => e.stopPropagation()}
+              className="offer-modal-overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeModal}
             >
-              {/* Header */}
-              <div className="offer-modal-header">
-                <h3>{modalState.company} - Offer Letter</h3>
-                <button
-                  className="offer-modal-close-btn"
-                  onClick={closeModal}
-                  aria-label="Close modal"
-                >
-                  &times;
-                </button>
-              </div>
-
-              {/* Toolbar */}
-              <div className="offer-modal-toolbar">
-                <div className="zoom-controls">
-                  <button
-                    onClick={zoomOut}
-                    disabled={zoomScale <= 1.0}
-                    className="toolbar-btn"
-                    title="Zoom Out"
-                    aria-label="Zoom Out"
-                  >
-                    －
-                  </button>
-                  <span className="zoom-value">{Math.round(zoomScale * 100)}%</span>
-                  <button
-                    onClick={zoomIn}
-                    disabled={zoomScale >= 2.5}
-                    className="toolbar-btn"
-                    title="Zoom In"
-                    aria-label="Zoom In"
-                  >
-                    ＋
-                  </button>
-                  <button
-                    onClick={resetZoom}
-                    disabled={zoomScale === 1.0}
-                    className="toolbar-btn reset-btn"
-                    title="Reset Zoom"
-                    aria-label="Reset Zoom"
-                  >
-                    Reset
-                  </button>
+              <motion.div
+                className="offer-modal-content"
+                initial={{ scale: 0.92, opacity: 0, y: 15 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.92, opacity: 0, y: 15 }}
+                transition={{ type: "spring", duration: 0.45 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Header */}
+                <div className="offer-modal-header">
+                  <h3>{modalState.company} - Offer Letter</h3>
+                  <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
+                    <button
+                      onClick={handleDownload}
+                      className="toolbar-btn download-btn"
+                      title="Download Document"
+                      aria-label="Download Document"
+                      style={{ padding: "6px 12px", fontSize: "12px" }}
+                    >
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: "4px" }}>
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                      </svg>
+                      Download
+                    </button>
+                    <button
+                      className="offer-modal-close-btn"
+                      onClick={closeModal}
+                      aria-label="Close modal"
+                    >
+                      &times;
+                    </button>
+                  </div>
                 </div>
 
-                <button
-                  onClick={handleDownload}
-                  className="toolbar-btn download-btn"
-                  title="Download Document"
-                  aria-label="Download Document"
-                >
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: "6px" }}>
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                    <polyline points="7 10 12 15 17 10"></polyline>
-                    <line x1="12" y1="15" x2="12" y2="3"></line>
-                  </svg>
-                  Download
-                </button>
-              </div>
-
-              {/* Body */}
-              <div className="offer-modal-body">
-                <div className="offer-letter-scroll-container">
-                  <div
-                    className="offer-letter-inner-align"
-                    style={{
-                      display: "flex",
-                      justifyContent: zoomScale > 1.0 ? "flex-start" : "center",
-                      width: "100%",
-                      minWidth: "100%",
-                    }}
-                  >
+                {/* Body */}
+                <div className="offer-modal-body">
+                  <div className="offer-letter-scroll-container">
                     <div
-                      className="offer-letter-img-wrapper"
+                      className="offer-letter-inner-align"
                       style={{
-                        width: `${zoomScale * 100}%`,
-                        maxWidth: zoomScale > 1.0 ? "none" : "100%",
-                        flexShrink: 0,
-                        transition: "width 0.2s ease",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        width: "100%",
+                        height: "100%",
                       }}
                     >
-                      <img
-                        src={modalState.pages[modalState.currentPageIndex]}
-                        alt={`${modalState.company} Offer Letter - Page ${modalState.currentPageIndex + 1}`}
-                        className="offer-letter-img"
-                      />
+                      <div
+                        className="offer-letter-img-wrapper"
+                        style={{
+                          maxWidth: "100%",
+                          maxHeight: "100%",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          background: "#ffffff",
+                          padding: "6px",
+                          borderRadius: "6px",
+                        }}
+                      >
+                        <img
+                          src={modalState.pages[modalState.currentPageIndex]}
+                          alt={`${modalState.company} Offer Letter - Page ${modalState.currentPageIndex + 1}`}
+                          style={{
+                            maxWidth: "100%",
+                            maxHeight: "58vh",
+                            width: "auto",
+                            height: "auto",
+                            objectFit: "contain",
+                            display: "block",
+                          }}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Footer (with pagination controls if multi-page) */}
-              <div className="offer-modal-footer">
-                <div className="offer-modal-page-info">
-                  {modalState.pages.length > 1 ? (
-                    `Page ${modalState.currentPageIndex + 1} of ${modalState.pages.length}`
-                  ) : (
-                    "Single-page Document"
+                {/* Footer (with pagination controls if multi-page) */}
+                <div className="offer-modal-footer">
+                  <div className="offer-modal-page-info">
+                    {modalState.pages.length > 1 ? (
+                      `Page ${modalState.currentPageIndex + 1} of ${modalState.pages.length}`
+                    ) : (
+                      "Single-page Document"
+                    )}
+                  </div>
+
+                  {modalState.pages.length > 1 && (
+                    <div className="offer-modal-nav-btns">
+                      <button
+                        className="offer-modal-nav-btn"
+                        onClick={prevPage}
+                        disabled={modalState.currentPageIndex === 0}
+                        aria-label="Previous Page"
+                      >
+                        Previous
+                      </button>
+                      <button
+                        className="offer-modal-nav-btn"
+                        onClick={nextPage}
+                        disabled={modalState.currentPageIndex === modalState.pages.length - 1}
+                        aria-label="Next Page"
+                      >
+                        Next
+                      </button>
+                    </div>
                   )}
                 </div>
-
-                {modalState.pages.length > 1 && (
-                  <div className="offer-modal-nav-btns">
-                    <button
-                      className="offer-modal-nav-btn"
-                      onClick={prevPage}
-                      disabled={modalState.currentPageIndex === 0}
-                      aria-label="Previous Page"
-                    >
-                      Previous
-                    </button>
-                    <button
-                      className="offer-modal-nav-btn"
-                      onClick={nextPage}
-                      disabled={modalState.currentPageIndex === modalState.pages.length - 1}
-                      aria-label="Next Page"
-                    >
-                      Next
-                    </button>
-                  </div>
-                )}
-              </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </div>
   );
 };
