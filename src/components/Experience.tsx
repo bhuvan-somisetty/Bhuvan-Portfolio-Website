@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { smoother } from "./Navbar";
 import "./styles/Experience.css";
 
 interface Internship {
@@ -39,17 +38,9 @@ const OfferLetterModal = ({
       }
     };
     window.addEventListener("keydown", handleKeyDown);
-    if (smoother) {
-      smoother.paused(true);
-    }
-    document.body.style.overflow = "hidden";
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
-      if (smoother) {
-        smoother.paused(false);
-      }
-      document.body.style.overflow = "";
     };
   }, [onClose]);
 
