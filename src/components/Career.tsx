@@ -2,7 +2,7 @@ import "./styles/Career.css";
 
 const Career = () => {
   return (
-    <div className="career-section section-container">
+    <div className="career-section section-container" id="education">
       <div className="career-container">
         <h2>
           My Learning <span>&</span>

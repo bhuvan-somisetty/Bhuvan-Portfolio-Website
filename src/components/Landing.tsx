@@ -4,6 +4,7 @@ import "./styles/Landing.css";
 const Landing = ({ children }: PropsWithChildren) => {
   return (
     <>
+      <div id="home" style={{ position: "absolute", top: 0, left: 0, height: 0, pointerEvents: "none" }} aria-hidden="true" />
       <div className="landing-section" id="landingDiv">
         <div className="landing-container">
           <div className="landing-intro">
