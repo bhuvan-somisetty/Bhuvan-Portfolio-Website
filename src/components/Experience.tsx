@@ -253,66 +253,94 @@ const Experience = () => {
       </div>
 
       {/* Offer Letter Lightbox Modal rendered via Portal outside layout transforms */}
+      {/* Offer Letter Lightbox Modal rendered via Portal outside layout transforms */}
       <AnimatePresence>
         {modalState.isOpen && createPortal(
-          <motion.div
-            className="offer-modal-overlay"
-            style={{
-              position: "fixed",
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              width: "100vw",
-              height: "100vh",
-              backgroundColor: "rgba(5, 3, 6, 0.88)",
-              backdropFilter: "blur(10px)",
-              WebkitBackdropFilter: "blur(10px)",
-              zIndex: 999999,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              padding: "20px",
-              boxSizing: "border-box",
-            }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={closeModal}
-          >
+          <>
+            {/* Backdrop Overlay */}
+            <motion.div
+              className="offer-modal-overlay"
+              style={{
+                position: "fixed",
+                top: 0,
+                left: 0,
+                width: "100vw",
+                height: "100vh",
+                backgroundColor: "rgba(5, 3, 6, 0.9)",
+                backdropFilter: "blur(8px)",
+                WebkitBackdropFilter: "blur(8px)",
+                zIndex: 999999,
+              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeModal}
+            />
+
+            {/* Modal Content Popup */}
             <motion.div
               className="offer-modal-content"
               style={{
-                background: "rgba(20, 15, 25, 0.82)",
-                border: "1px solid rgba(194, 164, 255, 0.2)",
+                position: "fixed",
+                top: "50%",
+                left: "50%",
+                zIndex: 1000000,
+                background: "rgba(20, 15, 25, 0.85)",
+                border: "1px solid rgba(194, 164, 255, 0.25)",
                 borderRadius: "20px",
-                maxWidth: "900px",
-                width: "100%",
-                maxHeight: "90vh",
+                width: "90vw",
+                maxWidth: "950px",
+                height: "85vh",
+                maxHeight: "85vh",
                 display: "flex",
                 flexDirection: "column",
-                boxShadow: "0 20px 50px rgba(0, 0, 0, 0.6), 0 0 40px rgba(160, 100, 255, 0.1)",
+                boxShadow: "0 25px 60px rgba(0, 0, 0, 0.8), 0 0 50px rgba(160, 100, 255, 0.15)",
                 overflow: "hidden",
-                position: "relative",
+                boxSizing: "border-box",
               }}
-              initial={{ scale: 0.92, opacity: 0, y: 15 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.92, opacity: 0, y: 15 }}
+              initial={{ scale: 0.92, opacity: 0, x: "-50%", y: "-40%" }}
+              animate={{ scale: 1, opacity: 1, x: "-50%", y: "-50%" }}
+              exit={{ scale: 0.92, opacity: 0, x: "-50%", y: "-40%" }}
               transition={{ type: "spring", duration: 0.45 }}
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
-              <div className="offer-modal-header">
-                <h3>{modalState.company} - Offer Letter</h3>
+              <div
+                className="offer-modal-header"
+                style={{
+                  padding: "18px 25px",
+                  borderBottom: "1px solid rgba(255, 255, 255, 0.08)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  background: "rgba(15, 10, 20, 0.3)",
+                }}
+              >
+                <h3 style={{ margin: 0, fontSize: "18px", color: "#ffffff", fontWeight: 600 }}>
+                  {modalState.company} - Offer Letter
+                </h3>
                 <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
                   <button
                     onClick={handleDownload}
                     className="toolbar-btn download-btn"
                     title="Download Document"
                     aria-label="Download Document"
-                    style={{ padding: "6px 12px", fontSize: "12px" }}
+                    style={{
+                      padding: "6px 12px",
+                      fontSize: "12px",
+                      background: "rgba(194, 164, 255, 0.1)",
+                      border: "1px solid rgba(194, 164, 255, 0.25)",
+                      color: "#ffffff",
+                      borderRadius: "6px",
+                      cursor: "pointer",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "4px",
+                      fontWeight: 500,
+                      transition: "all 0.2s ease",
+                    }}
                   >
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: "4px" }}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                       <polyline points="7 10 12 15 17 10"></polyline>
                       <line x1="12" y1="15" x2="12" y2="3"></line>
@@ -323,6 +351,19 @@ const Experience = () => {
                     className="offer-modal-close-btn"
                     onClick={closeModal}
                     aria-label="Close modal"
+                    style={{
+                      background: "transparent",
+                      border: "none",
+                      color: "rgba(255, 255, 255, 0.5)",
+                      fontSize: "28px",
+                      cursor: "pointer",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      transition: "color 0.2s ease",
+                      lineHeight: 1,
+                      padding: "0 5px",
+                    }}
                   >
                     &times;
                   </button>
@@ -330,44 +371,46 @@ const Experience = () => {
               </div>
 
               {/* Body */}
-              <div className="offer-modal-body">
-                <div className="offer-letter-scroll-container">
-                  <div
-                    className="offer-letter-inner-align"
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "flex-start",
-                      width: "100%",
-                    }}
-                  >
-                    <div
-                      className="offer-letter-img-wrapper"
-                      style={{
-                        width: "100%",
-                        background: "#ffffff",
-                        padding: "8px",
-                        borderRadius: "6px",
-                        boxSizing: "border-box",
-                      }}
-                    >
-                      <img
-                        src={modalState.pages[modalState.currentPageIndex]}
-                        alt={`${modalState.company} Offer Letter - Page ${modalState.currentPageIndex + 1}`}
-                        style={{
-                          width: "100%",
-                          height: "auto",
-                          display: "block",
-                        }}
-                      />
-                    </div>
-                  </div>
-                </div>
+              <div
+                className="offer-modal-body"
+                style={{
+                  padding: "20px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  background: "rgba(0, 0, 0, 0.4)",
+                  flexGrow: 1,
+                  overflow: "hidden",
+                  boxSizing: "border-box",
+                }}
+              >
+                <img
+                  src={modalState.pages[modalState.currentPageIndex]}
+                  alt={`${modalState.company} Offer Letter - Page ${modalState.currentPageIndex + 1}`}
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    width: "auto",
+                    height: "auto",
+                    objectFit: "contain",
+                    display: "block",
+                  }}
+                />
               </div>
 
               {/* Footer (with pagination controls if multi-page) */}
-              <div className="offer-modal-footer">
-                <div className="offer-modal-page-info">
+              <div
+                className="offer-modal-footer"
+                style={{
+                  padding: "18px 25px",
+                  borderTop: "1px solid rgba(255, 255, 255, 0.08)",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  background: "rgba(15, 10, 20, 0.6)",
+                }}
+              >
+                <div className="offer-modal-page-info" style={{ fontSize: "14px", color: "rgba(255, 255, 255, 0.5)" }}>
                   {modalState.pages.length > 1 ? (
                     `Page ${modalState.currentPageIndex + 1} of ${modalState.pages.length}`
                   ) : (
@@ -376,12 +419,24 @@ const Experience = () => {
                 </div>
 
                 {modalState.pages.length > 1 && (
-                  <div className="offer-modal-nav-btns">
+                  <div className="offer-modal-nav-btns" style={{ display: "flex", gap: "12px" }}>
                     <button
                       className="offer-modal-nav-btn"
                       onClick={prevPage}
                       disabled={modalState.currentPageIndex === 0}
                       aria-label="Previous Page"
+                      style={{
+                        background: "rgba(255, 255, 255, 0.05)",
+                        border: "1px solid rgba(255, 255, 255, 0.1)",
+                        color: "#ffffff",
+                        padding: "8px 16px",
+                        borderRadius: "6px",
+                        fontSize: "13px",
+                        fontWeight: 500,
+                        cursor: modalState.currentPageIndex === 0 ? "not-allowed" : "pointer",
+                        opacity: modalState.currentPageIndex === 0 ? 0.3 : 1,
+                        transition: "all 0.2s ease",
+                      }}
                     >
                       Previous
                     </button>
@@ -390,6 +445,18 @@ const Experience = () => {
                       onClick={nextPage}
                       disabled={modalState.currentPageIndex === modalState.pages.length - 1}
                       aria-label="Next Page"
+                      style={{
+                        background: "rgba(255, 255, 255, 0.05)",
+                        border: "1px solid rgba(255, 255, 255, 0.1)",
+                        color: "#ffffff",
+                        padding: "8px 16px",
+                        borderRadius: "6px",
+                        fontSize: "13px",
+                        fontWeight: 500,
+                        cursor: modalState.currentPageIndex === modalState.pages.length - 1 ? "not-allowed" : "pointer",
+                        opacity: modalState.currentPageIndex === modalState.pages.length - 1 ? 0.3 : 1,
+                        transition: "all 0.2s ease",
+                      }}
                     >
                       Next
                     </button>
@@ -397,7 +464,7 @@ const Experience = () => {
                 )}
               </div>
             </motion.div>
-          </motion.div>,
+          </>,
           document.body
         )}
       </AnimatePresence>
