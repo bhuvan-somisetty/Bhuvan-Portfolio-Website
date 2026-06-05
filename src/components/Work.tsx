@@ -77,23 +77,24 @@ const Work = () => {
   useGSAP(() => {
     let translateX = 0;
 
-    function calcTranslateX() {
-      const boxes = document.getElementsByClassName("work-box");
+    /**
+     * Calculate exactly how many pixels we need to horizontally scroll
+     * the flex so the LAST card's right edge aligns with the viewport right.
+     *
+     * Using direct DOM measurement (lastBox.right − viewportWidth) avoids
+     * errors from container max-widths, negative flex margins, and padding
+     * that made the old formula overshoot and create blank space after Work.
+     */
+    function calcTranslateX(): number {
+      const boxes = document.querySelectorAll<HTMLElement>(".work-box");
       if (!boxes.length) return 0;
-      const rectLeft = document
-        .querySelector(".work-container")!
-        .getBoundingClientRect().left;
-      const rect = boxes[0].getBoundingClientRect();
-      const parentWidth =
-        boxes[0].parentElement!.getBoundingClientRect().width;
-      const padding =
-        parseInt(window.getComputedStyle(boxes[0]).padding) / 2;
 
-      // Natural distance to show Card 05 fully.
-      // Work's z-index:20 background visually covers Tech Stack during pin.
-      const base =
-        rect.width * boxes.length - (rectLeft + parentWidth) + padding;
-      return base;
+      // At call time the flex transform should be 0 (we kill+revert first).
+      const lastBox = boxes[boxes.length - 1];
+      const lastRight = lastBox.getBoundingClientRect().right;
+      const viewportW = window.innerWidth;
+
+      return Math.max(0, lastRight - viewportW);
     }
 
     function paintSpacer(self: ScrollTrigger) {
@@ -105,7 +106,7 @@ const Work = () => {
     }
 
     function buildAnimation() {
-      // Kill any existing instance before rebuilding
+      // Kill + revert so the flex is back at x:0 before we measure
       ScrollTrigger.getById("work")?.kill(true);
 
       translateX = calcTranslateX();
@@ -116,9 +117,8 @@ const Work = () => {
           trigger: ".work-section",
           start: "top top",
           end: `+=${translateX}`,
-          scrub: 1.2,
+          scrub: 1,
           pin: true,
-          anticipatePin: 1,
           invalidateOnRefresh: true,
           id: "work",
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -128,7 +128,7 @@ const Work = () => {
         },
       });
 
-      tl.to(".work-flex", { x: -translateX, ease: "power1.inOut" });
+      tl.to(".work-flex", { x: -translateX, ease: "none" });
     }
 
     // Build once immediately (pre-image sizes)
