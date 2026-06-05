@@ -8,8 +8,8 @@
   opacity: 1;
   height: auto;
   margin: auto;
-  margin-bottom: 150px;
-  padding: 120px 6vw;
+  margin-bottom: 80px;
+  padding: 70px 6vw;
   background-color: var(--backgroundColor);
   box-sizing: border-box;
 }
@@ -452,8 +452,8 @@
 /* ─── Responsive Queries ────────────────────────────────────────── */
 @media only screen and (max-width: 1025px) {
   .experience-section {
-    padding: 90px 4vw;
-    margin-bottom: 80px;
+    padding: 55px 4vw;
+    margin-bottom: 50px;
   }
   
   .experience-grid {
@@ -470,7 +470,7 @@
 
 @media only screen and (max-width: 600px) {
   .experience-section {
-    padding: 60px 4vw;
+    padding: 40px 4vw;
   }
   
   .experience-section h2 {

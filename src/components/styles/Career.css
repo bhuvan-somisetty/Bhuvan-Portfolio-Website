@@ -8,8 +8,8 @@
   opacity: 1;
   height: auto;
   margin: auto;
-  margin-bottom: 250px;
-  padding: 120px 0px;
+  margin-bottom: 120px;
+  padding: 70px 0px;
 }
 
 .career-section h2 {
@@ -22,8 +22,8 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  margin-top: 50px;
-  margin-bottom: 90px;
+  margin-top: 30px;
+  margin-bottom: 50px;
 }
 .career-section h2 > span {
   font-family: "Geist", sans-serif;

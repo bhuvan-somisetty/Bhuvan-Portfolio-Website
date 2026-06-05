@@ -3,8 +3,8 @@
   position: relative;
   z-index: 10;
   width: 100%;
-  margin-top: 120px;
-  padding: 100px 0;
+  margin-top: 60px;
+  padding: 50px 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,7 +59,7 @@
   font-size: 15px;
   color: rgba(255, 255, 255, 0.38);
   text-align: center;
-  margin: 0 0 48px;
+  margin: 0 0 28px;
   letter-spacing: 0.4px;
   max-width: 560px;
 }
@@ -182,7 +182,7 @@
 /* ── Responsive ──────────────────────────────────────────── */
 @media (max-width: 900px) {
   .techstack-section {
-    padding: 80px 0 100px;
+    padding: 40px 0 60px;
   }
   .techstack-bubbles {
     gap: 18px 14px;

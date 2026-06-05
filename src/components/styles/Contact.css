@@ -1,6 +1,6 @@
 .contact-section {
-  margin: 120px auto 0;
-  padding: 100px 0;
+  margin: 60px auto 0;
+  padding: 60px 0;
   position: relative;
   z-index: 10;
   background-color: var(--backgroundColor);
@@ -85,8 +85,8 @@ a.contact-social {
     margin-top: 20px;
   }
   .contact-section {
-    margin-top: 50px;
-    padding-bottom: 50px;
+    margin-top: 30px;
+    padding-bottom: 40px;
   }
   .contact-container {
     width: calc(100% - 25px);
