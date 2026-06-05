@@ -43,11 +43,13 @@ const Experience = () => {
     }
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
-      if (smoother) {
-        smoother.paused(false);
+      if (modalState.isOpen) {
+        if (smoother) {
+          smoother.paused(false);
+        } else {
+          document.body.style.overflow = "";
+        }
       }
-      document.body.style.overflow = "";
-      document.body.style.overflowY = "auto";
     };
   }, [modalState.isOpen]);
 
@@ -251,132 +253,154 @@ const Experience = () => {
       </div>
 
       {/* Offer Letter Lightbox Modal rendered via Portal outside layout transforms */}
-      {createPortal(
-        <AnimatePresence>
-          {modalState.isOpen && (
+      <AnimatePresence>
+        {modalState.isOpen && createPortal(
+          <motion.div
+            className="offer-modal-overlay"
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              width: "100vw",
+              height: "100vh",
+              backgroundColor: "rgba(5, 3, 6, 0.88)",
+              backdropFilter: "blur(10px)",
+              WebkitBackdropFilter: "blur(10px)",
+              zIndex: 999999,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "20px",
+              boxSizing: "border-box",
+            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeModal}
+          >
             <motion.div
-              className="offer-modal-overlay"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={closeModal}
+              className="offer-modal-content"
+              style={{
+                background: "rgba(20, 15, 25, 0.82)",
+                border: "1px solid rgba(194, 164, 255, 0.2)",
+                borderRadius: "20px",
+                maxWidth: "900px",
+                width: "100%",
+                maxHeight: "90vh",
+                display: "flex",
+                flexDirection: "column",
+                boxShadow: "0 20px 50px rgba(0, 0, 0, 0.6), 0 0 40px rgba(160, 100, 255, 0.1)",
+                overflow: "hidden",
+                position: "relative",
+              }}
+              initial={{ scale: 0.92, opacity: 0, y: 15 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.92, opacity: 0, y: 15 }}
+              transition={{ type: "spring", duration: 0.45 }}
+              onClick={(e) => e.stopPropagation()}
             >
-              <motion.div
-                className="offer-modal-content"
-                initial={{ scale: 0.92, opacity: 0, y: 15 }}
-                animate={{ scale: 1, opacity: 1, y: 0 }}
-                exit={{ scale: 0.92, opacity: 0, y: 15 }}
-                transition={{ type: "spring", duration: 0.45 }}
-                onClick={(e) => e.stopPropagation()}
-              >
-                {/* Header */}
-                <div className="offer-modal-header">
-                  <h3>{modalState.company} - Offer Letter</h3>
-                  <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
-                    <button
-                      onClick={handleDownload}
-                      className="toolbar-btn download-btn"
-                      title="Download Document"
-                      aria-label="Download Document"
-                      style={{ padding: "6px 12px", fontSize: "12px" }}
-                    >
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: "4px" }}>
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                        <polyline points="7 10 12 15 17 10"></polyline>
-                        <line x1="12" y1="15" x2="12" y2="3"></line>
-                      </svg>
-                      Download
-                    </button>
-                    <button
-                      className="offer-modal-close-btn"
-                      onClick={closeModal}
-                      aria-label="Close modal"
-                    >
-                      &times;
-                    </button>
-                  </div>
+              {/* Header */}
+              <div className="offer-modal-header">
+                <h3>{modalState.company} - Offer Letter</h3>
+                <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
+                  <button
+                    onClick={handleDownload}
+                    className="toolbar-btn download-btn"
+                    title="Download Document"
+                    aria-label="Download Document"
+                    style={{ padding: "6px 12px", fontSize: "12px" }}
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: "4px" }}>
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                      <polyline points="7 10 12 15 17 10"></polyline>
+                      <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Download
+                  </button>
+                  <button
+                    className="offer-modal-close-btn"
+                    onClick={closeModal}
+                    aria-label="Close modal"
+                  >
+                    &times;
+                  </button>
                 </div>
+              </div>
 
-                {/* Body */}
-                <div className="offer-modal-body">
-                  <div className="offer-letter-scroll-container">
+              {/* Body */}
+              <div className="offer-modal-body">
+                <div className="offer-letter-scroll-container">
+                  <div
+                    className="offer-letter-inner-align"
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "flex-start",
+                      width: "100%",
+                    }}
+                  >
                     <div
-                      className="offer-letter-inner-align"
+                      className="offer-letter-img-wrapper"
                       style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
                         width: "100%",
-                        height: "100%",
+                        background: "#ffffff",
+                        padding: "8px",
+                        borderRadius: "6px",
+                        boxSizing: "border-box",
                       }}
                     >
-                      <div
-                        className="offer-letter-img-wrapper"
+                      <img
+                        src={modalState.pages[modalState.currentPageIndex]}
+                        alt={`${modalState.company} Offer Letter - Page ${modalState.currentPageIndex + 1}`}
                         style={{
-                          maxWidth: "100%",
-                          maxHeight: "100%",
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          background: "#ffffff",
-                          padding: "6px",
-                          borderRadius: "6px",
+                          width: "100%",
+                          height: "auto",
+                          display: "block",
                         }}
-                      >
-                        <img
-                          src={modalState.pages[modalState.currentPageIndex]}
-                          alt={`${modalState.company} Offer Letter - Page ${modalState.currentPageIndex + 1}`}
-                          style={{
-                            maxWidth: "100%",
-                            maxHeight: "58vh",
-                            width: "auto",
-                            height: "auto",
-                            objectFit: "contain",
-                            display: "block",
-                          }}
-                        />
-                      </div>
+                      />
                     </div>
                   </div>
                 </div>
+              </div>
 
-                {/* Footer (with pagination controls if multi-page) */}
-                <div className="offer-modal-footer">
-                  <div className="offer-modal-page-info">
-                    {modalState.pages.length > 1 ? (
-                      `Page ${modalState.currentPageIndex + 1} of ${modalState.pages.length}`
-                    ) : (
-                      "Single-page Document"
-                    )}
-                  </div>
-
-                  {modalState.pages.length > 1 && (
-                    <div className="offer-modal-nav-btns">
-                      <button
-                        className="offer-modal-nav-btn"
-                        onClick={prevPage}
-                        disabled={modalState.currentPageIndex === 0}
-                        aria-label="Previous Page"
-                      >
-                        Previous
-                      </button>
-                      <button
-                        className="offer-modal-nav-btn"
-                        onClick={nextPage}
-                        disabled={modalState.currentPageIndex === modalState.pages.length - 1}
-                        aria-label="Next Page"
-                      >
-                        Next
-                      </button>
-                    </div>
+              {/* Footer (with pagination controls if multi-page) */}
+              <div className="offer-modal-footer">
+                <div className="offer-modal-page-info">
+                  {modalState.pages.length > 1 ? (
+                    `Page ${modalState.currentPageIndex + 1} of ${modalState.pages.length}`
+                  ) : (
+                    "Single-page Document"
                   )}
                 </div>
-              </motion.div>
+
+                {modalState.pages.length > 1 && (
+                  <div className="offer-modal-nav-btns">
+                    <button
+                      className="offer-modal-nav-btn"
+                      onClick={prevPage}
+                      disabled={modalState.currentPageIndex === 0}
+                      aria-label="Previous Page"
+                    >
+                      Previous
+                    </button>
+                    <button
+                      className="offer-modal-nav-btn"
+                      onClick={nextPage}
+                      disabled={modalState.currentPageIndex === modalState.pages.length - 1}
+                      aria-label="Next Page"
+                    >
+                      Next
+                    </button>
+                  </div>
+                )}
+              </div>
             </motion.div>
-          )}
-        </AnimatePresence>,
-        document.body
-      )}
+          </motion.div>,
+          document.body
+        )}
+      </AnimatePresence>
     </div>
   );
 };
