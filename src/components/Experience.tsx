@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { smoother } from "./Navbar";
 import "./styles/Experience.css";
 
 interface Internship {
@@ -24,7 +25,7 @@ const Experience = () => {
     currentPageIndex: 0,
   });
 
-  // Close modal on escape key press
+  // Close modal on escape key press and lock/unlock scroll
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -33,11 +34,19 @@ const Experience = () => {
     };
     if (modalState.isOpen) {
       window.addEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "hidden"; // lock scroll
+      if (smoother) {
+        smoother.paused(true);
+      } else {
+        document.body.style.overflow = "hidden";
+      }
     }
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = ""; // restore scroll
+      if (smoother) {
+        smoother.paused(false);
+      }
+      document.body.style.overflow = "";
+      document.body.style.overflowY = "auto";
     };
   }, [modalState.isOpen]);
 
