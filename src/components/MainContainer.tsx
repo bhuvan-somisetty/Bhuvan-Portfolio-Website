@@ -115,16 +115,6 @@ const MainContainer = ({ children }: PropsWithChildren) => {
             {/* ── My Work (5 horizontal scroll cards) ─────────────── */}
             <Work />
 
-            {/* ── Spacer: minimal gap after Work to clear GSAP pin ── */}
-            <div
-              aria-hidden="true"
-              style={{
-                height: "20vh",
-                width: "100%",
-                backgroundColor: "#0b080c",
-                display: "block",
-              }}
-            />
 
             {/* ── Tech Stack ──────────────────────────────────────────────── */}
             <div
@@ -132,7 +122,7 @@ const MainContainer = ({ children }: PropsWithChildren) => {
               style={{
                 width: "100%",
                 minHeight: "auto",
-                paddingTop: "40px",
+                paddingTop: "20px",
                 paddingBottom: "50px",
                 paddingLeft: "6vw",
                 paddingRight: "6vw",
