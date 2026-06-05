@@ -115,11 +115,11 @@ const MainContainer = ({ children }: PropsWithChildren) => {
             {/* ── My Work (5 horizontal scroll cards) ─────────────── */}
             <Work />
 
-            {/* ── Spacer: 95vh gap after Work (speed:1.7 needs this to clear Work) ── */}
+            {/* ── Spacer: minimal gap after Work to clear GSAP pin ── */}
             <div
               aria-hidden="true"
               style={{
-                height: "95vh",
+                height: "20vh",
                 width: "100%",
                 backgroundColor: "#0b080c",
                 display: "block",
@@ -131,9 +131,9 @@ const MainContainer = ({ children }: PropsWithChildren) => {
               id="tech-stack"
               style={{
                 width: "100%",
-                minHeight: "100vh",
-                paddingTop: "120px",
-                paddingBottom: "100px",
+                minHeight: "auto",
+                paddingTop: "40px",
+                paddingBottom: "50px",
                 paddingLeft: "6vw",
                 paddingRight: "6vw",
                 boxSizing: "border-box",
