@@ -14,11 +14,12 @@ const Navbar = () => {
       wrapper: "#smooth-wrapper",
       content: "#smooth-content",
       smooth: 1.7,
-      speed: 1.7,
       effects: true,
       autoResize: true,
       ignoreMobileResize: true,
     });
+
+    (window as any).smoother = smoother;
 
     smoother.scrollTop(0);
     smoother.paused(true);

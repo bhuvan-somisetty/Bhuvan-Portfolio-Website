@@ -75,24 +75,20 @@ const projects: Project[] = [
 
 const Work = () => {
   useGSAP(() => {
-    let translateX = 0;
-
-    /**
-     * Calculate exactly how many pixels we need to horizontally scroll
-     * the flex so the LAST card's right edge aligns with the viewport right.
-     *
-     * Using direct DOM measurement (lastBox.right − viewportWidth) avoids
-     * errors from container max-widths, negative flex margins, and padding
-     * that made the old formula overshoot and create blank space after Work.
-     */
     function calcTranslateX(): number {
       const boxes = document.querySelectorAll<HTMLElement>(".work-box");
       if (!boxes.length) return 0;
 
-      // At call time the flex transform should be 0 (we kill+revert first).
+      // Temporarily clear any transform to get clean, untranslated coordinates
+      const flex = document.querySelector<HTMLElement>(".work-flex");
+      const origTransform = flex ? flex.style.transform : "";
+      if (flex) flex.style.transform = "none";
+
       const lastBox = boxes[boxes.length - 1];
       const lastRight = lastBox.getBoundingClientRect().right;
       const viewportW = window.innerWidth;
+
+      if (flex) flex.style.transform = origTransform;
 
       return Math.max(0, lastRight - viewportW);
     }
@@ -105,72 +101,65 @@ const Work = () => {
       }
     }
 
-    function buildAnimation() {
-      // Kill + revert so the flex is back at x:0 before we measure
-      ScrollTrigger.getById("work")?.kill(true);
+    console.log("[WORK] useGSAP setup: creating ScrollTrigger");
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".work-section",
+        start: "top top",
+        end: () => `+=${calcTranslateX()}`,
+        scrub: 1,
+        pin: true,
+        invalidateOnRefresh: true,
+        id: "work",
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        onInit: paintSpacer,
+        onRefresh: paintSpacer,
+      },
+    });
 
-      translateX = calcTranslateX();
-      if (!translateX) return;
+    tl.to(".work-flex", {
+      x: () => -calcTranslateX(),
+      ease: "none",
+    });
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".work-section",
-          start: "top top",
-          end: `+=${translateX}`,
-          scrub: 1,
-          pin: true,
-          invalidateOnRefresh: true,
-          id: "work",
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          onInit: paintSpacer,
-          onRefresh: paintSpacer,
-        },
-      });
-
-      tl.to(".work-flex", { x: -translateX, ease: "none" });
-    }
-
-    // Build once immediately (pre-image sizes)
-    buildAnimation();
-
-    // Rebuild after ALL images in the work section have loaded so card
-    // dimensions are correct and the pin-end is recalculated accurately
+    // Refresh layout once all images load to ensure correct bounding box measurements
     const imgs = Array.from(
       document.querySelectorAll<HTMLImageElement>(".work-image img")
     );
-
-    let pending = imgs.filter((img) => !img.complete).length;
-
-    if (pending === 0) {
-      // All images already cached — just refresh triggers
+    const onLoad = () => {
+      console.log("[WORK] Image loaded, refreshing ScrollTrigger");
       ScrollTrigger.refresh();
-    } else {
-      const onLoad = () => {
-        pending--;
-        if (pending <= 0) {
-          buildAnimation();
-          ScrollTrigger.refresh();
-        }
-      };
-      imgs.forEach((img) => {
-        if (!img.complete) {
-          img.addEventListener("load", onLoad, { once: true });
-          img.addEventListener("error", onLoad, { once: true });
-        }
-      });
-    }
-
-    // Safety net: always refresh 600 ms after mount in case load events
-    // already fired before we attached listeners
-    const safety = setTimeout(() => {
-      buildAnimation();
-      ScrollTrigger.refresh();
-    }, 600);
+    };
+    imgs.forEach((img) => {
+      if (!img.complete) {
+        img.addEventListener("load", onLoad, { once: true });
+        img.addEventListener("error", onLoad, { once: true });
+      }
+    });
 
     return () => {
-      clearTimeout(safety);
-      ScrollTrigger.getById("work")?.kill(true);
+      console.log("[WORK] useGSAP cleanup: destroying ScrollTrigger work and cleaning spacers");
+      const trig = ScrollTrigger.getById("work");
+      if (trig) {
+        trig.kill(true);
+      }
+      tl.kill();
+
+      // Forcefully clean up any remaining pin spacers from the DOM
+      const spacers = document.querySelectorAll(".pin-spacer-work");
+      spacers.forEach((spacer) => {
+        const workEl = spacer.querySelector("#work");
+        if (workEl && spacer.parentNode) {
+          spacer.parentNode.insertBefore(workEl, spacer);
+        }
+        spacer.remove();
+      });
+
+      imgs.forEach((img) => {
+        img.removeEventListener("load", onLoad);
+        img.removeEventListener("error", onLoad);
+      });
     };
   }, []);
 
