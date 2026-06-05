@@ -25,6 +25,8 @@ const Experience = () => {
     currentPageIndex: 0,
   });
 
+  const [zoomScale, setZoomScale] = useState<number>(1.0);
+
   // Close modal on escape key press and lock/unlock scroll
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -57,6 +59,7 @@ const Experience = () => {
       pages: internship.offerLetterPages,
       currentPageIndex: 0,
     });
+    setZoomScale(1.0);
   };
 
   const closeModal = () => {
@@ -69,6 +72,7 @@ const Experience = () => {
         ...prev,
         currentPageIndex: prev.currentPageIndex + 1,
       }));
+      setZoomScale(1.0);
     }
   };
 
@@ -78,7 +82,31 @@ const Experience = () => {
         ...prev,
         currentPageIndex: prev.currentPageIndex - 1,
       }));
+      setZoomScale(1.0);
     }
+  };
+
+  const zoomIn = () => {
+    setZoomScale((prev) => Math.min(prev + 0.25, 2.5));
+  };
+
+  const zoomOut = () => {
+    setZoomScale((prev) => Math.max(prev - 0.25, 1.0));
+  };
+
+  const resetZoom = () => {
+    setZoomScale(1.0);
+  };
+
+  const handleDownload = () => {
+    const currentImage = modalState.pages[modalState.currentPageIndex];
+    const link = document.createElement("a");
+    link.href = currentImage;
+    const ext = currentImage.split('.').pop() || 'png';
+    link.download = `${modalState.company.replace(/[\s\.]+/g, "_")}_Offer_Letter_Page_${modalState.currentPageIndex + 1}.${ext}`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   // Sleek SVG Logos
@@ -267,14 +295,82 @@ const Experience = () => {
                 </button>
               </div>
 
+              {/* Toolbar */}
+              <div className="offer-modal-toolbar">
+                <div className="zoom-controls">
+                  <button
+                    onClick={zoomOut}
+                    disabled={zoomScale <= 1.0}
+                    className="toolbar-btn"
+                    title="Zoom Out"
+                    aria-label="Zoom Out"
+                  >
+                    －
+                  </button>
+                  <span className="zoom-value">{Math.round(zoomScale * 100)}%</span>
+                  <button
+                    onClick={zoomIn}
+                    disabled={zoomScale >= 2.5}
+                    className="toolbar-btn"
+                    title="Zoom In"
+                    aria-label="Zoom In"
+                  >
+                    ＋
+                  </button>
+                  <button
+                    onClick={resetZoom}
+                    disabled={zoomScale === 1.0}
+                    className="toolbar-btn reset-btn"
+                    title="Reset Zoom"
+                    aria-label="Reset Zoom"
+                  >
+                    Reset
+                  </button>
+                </div>
+
+                <button
+                  onClick={handleDownload}
+                  className="toolbar-btn download-btn"
+                  title="Download Document"
+                  aria-label="Download Document"
+                >
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: "6px" }}>
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  Download
+                </button>
+              </div>
+
               {/* Body */}
               <div className="offer-modal-body">
-                <div className="offer-letter-img-wrapper">
-                  <img
-                    src={modalState.pages[modalState.currentPageIndex]}
-                    alt={`${modalState.company} Offer Letter - Page ${modalState.currentPageIndex + 1}`}
-                    className="offer-letter-img"
-                  />
+                <div className="offer-letter-scroll-container">
+                  <div
+                    className="offer-letter-inner-align"
+                    style={{
+                      display: "flex",
+                      justifyContent: zoomScale > 1.0 ? "flex-start" : "center",
+                      width: "100%",
+                      minWidth: "100%",
+                    }}
+                  >
+                    <div
+                      className="offer-letter-img-wrapper"
+                      style={{
+                        width: `${zoomScale * 100}%`,
+                        maxWidth: zoomScale > 1.0 ? "none" : "100%",
+                        flexShrink: 0,
+                        transition: "width 0.2s ease",
+                      }}
+                    >
+                      <img
+                        src={modalState.pages[modalState.currentPageIndex]}
+                        alt={`${modalState.company} Offer Letter - Page ${modalState.currentPageIndex + 1}`}
+                        className="offer-letter-img"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
 

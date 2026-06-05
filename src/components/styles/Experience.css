@@ -246,10 +246,10 @@
 }
 
 .offer-modal-content {
-  background: rgba(20, 15, 25, 0.8);
+  background: rgba(20, 15, 25, 0.82);
   border: 1px solid rgba(194, 164, 255, 0.2);
   border-radius: 20px;
-  max-width: 580px;
+  max-width: 850px;
   width: 100%;
   max-height: 90vh;
   display: flex;
@@ -261,15 +261,16 @@
 }
 
 .offer-modal-header {
-  padding: 20px 25px;
+  padding: 18px 25px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background: rgba(15, 10, 20, 0.3);
 }
 
 .offer-modal-header h3 {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 600;
   color: #ffffff;
   margin: 0;
@@ -293,32 +294,115 @@
   color: var(--accentColor);
 }
 
-.offer-modal-body {
-  padding: 25px;
+/* Modal Toolbar */
+.offer-modal-toolbar {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 25px;
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.zoom-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.zoom-value {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  min-width: 45px;
+  text-align: center;
+  font-weight: 500;
+  font-family: monospace;
+}
+
+.toolbar-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.2);
-  overflow-y: auto;
+}
+
+.toolbar-btn:hover:not(:disabled) {
+  background: var(--accentColor);
+  color: #0b080c;
+  border-color: var(--accentColor);
+}
+
+.toolbar-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.download-btn {
+  background: rgba(194, 164, 255, 0.1);
+  border: 1px solid rgba(194, 164, 255, 0.25);
+  color: #ffffff;
+}
+
+/* Modal Body & Document Viewer Container */
+.offer-modal-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.3);
+  height: 60vh;
+  min-height: 400px;
+  overflow: hidden;
   flex-grow: 1;
 }
 
-.offer-letter-img-wrapper {
+.offer-letter-scroll-container {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #ffffff;
+  height: 100%;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.45);
   border-radius: 8px;
-  padding: 5px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Custom Scrollbars for modern dark UI */
+.offer-letter-scroll-container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.offer-letter-scroll-container::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.offer-letter-scroll-container::-webkit-scrollbar-thumb {
+  background: rgba(194, 164, 255, 0.25);
+  border-radius: 4px;
+}
+
+.offer-letter-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: var(--accentColor);
+}
+
+.offer-letter-img-wrapper {
+  background: #ffffff;
+  border-radius: 4px;
+  padding: 4px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  display: block;
 }
 
 .offer-letter-img {
-  max-width: 100%;
-  max-height: 55vh;
-  object-fit: contain;
+  width: 100%;
+  height: auto;
   display: block;
 }
 
