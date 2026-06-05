@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
   FaGithub,
   FaInstagram,
@@ -5,10 +6,21 @@ import {
 } from "react-icons/fa6";
 import "./styles/SocialIcons.css";
 import { TbNotes } from "react-icons/tb";
-import { useEffect } from "react";
 import HoverLinks from "./HoverLinks";
+import DocumentViewerModal from "./DocumentViewerModal";
 
 const SocialIcons = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleDownloadResume = () => {
+    const link = document.createElement("a");
+    link.href = "/images/Bhuvan_Somisetty_Resume.png";
+    link.download = "Bhuvan_Somisetty_Resume.png";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   useEffect(() => {
     const social = document.getElementById("social") as HTMLElement;
     const iconsSection = document.querySelector(".icons-section") as HTMLElement;
@@ -87,12 +99,28 @@ const SocialIcons = () => {
           </a>
         </span>
       </div>
-      <a className="resume-button" href="#">
+      <a
+        className="resume-button"
+        href="#"
+        onClick={(e) => {
+          e.preventDefault();
+          setIsModalOpen(true);
+        }}
+      >
         <HoverLinks text="RESUME" />
         <span>
           <TbNotes />
         </span>
       </a>
+      <DocumentViewerModal
+        isOpen={isModalOpen}
+        title="Resume"
+        subtitle="Professional Resume"
+        pages={["/images/Bhuvan_Somisetty_Resume.png"]}
+        currentPageIndex={0}
+        onClose={() => setIsModalOpen(false)}
+        onDownload={handleDownloadResume}
+      />
     </div>
   );
 };
