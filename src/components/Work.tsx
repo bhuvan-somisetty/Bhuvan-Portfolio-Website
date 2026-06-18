@@ -31,7 +31,7 @@ const projects: Project[] = [
     about:
       "An AI-powered safety platform focused on smart monitoring, behavior insights, alerts, and parent dashboard controls.",
     image: "/images/02_alphaguard_card.jpg",
-    link: "https://child-shield.vercel.app",
+    link: "https://alphaguard-v2.vercel.app/",
     buttonLabel: "Live Demo",
   },
   {
