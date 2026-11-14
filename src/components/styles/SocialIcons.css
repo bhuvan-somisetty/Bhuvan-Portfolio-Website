@@ -9,12 +9,24 @@
   transition: opacity 0.4s ease;
 }
 
-.icons-section.icons-hidden {
+/* When the tech stack is in view, hide only the social bar; the resume
+   button stays visible and clickable (the intro animation sets an inline
+   opacity on .icons-section, so hiding the whole wrapper left it unclickable). */
+.icons-section.icons-hidden .social-icons {
   opacity: 0;
   pointer-events: none;
 }
 
+.icons-section.icons-hidden .resume-button {
+  color: #fff;
+  background: rgba(14, 9, 21, 0.88);
+  border: 1px solid rgba(168, 85, 247, 0.45);
+  border-radius: 999px;
+  padding: 8px 16px;
+}
+
 .social-icons {
+  transition: opacity 0.4s ease;
   position: absolute;
   left: -8px;
   bottom: 24px;
