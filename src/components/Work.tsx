@@ -17,6 +17,42 @@ interface Project {
 
 const projects: Project[] = [
   {
+    name: "KMRA",
+    category: "Kubernetes Security Scanner (Go CLI)",
+    about:
+      "A Go CLI that scans Kubernetes YAML, Helm charts and Kustomize overlays against 11 CIS-benchmark rules, scores them 0-100 and exports terminal, JSON, HTML and SARIF reports.",
+    image: "/images/09_kmra_card.jpg",
+    link: "https://bhuvan-somisetty.github.io/kmra/",
+    buttonLabel: "Live Demo",
+  },
+  {
+    name: "AI Trip Optimizer",
+    category: "Explainable AI for Business Travel",
+    about:
+      "A LangGraph pipeline searches real flight fares and live hotel prices, checks them against budget and traveler rules, and writes an itinerary with a Trade-off Ledger. A human approves; nothing is booked automatically.",
+    image: "/images/10_trip_optimizer_card.jpg",
+    link: "https://ai-trip-optimizer.vercel.app",
+    buttonLabel: "Live Demo",
+  },
+  {
+    name: "OpenSourceX",
+    category: "Launchpad for Paid Open Source Programs",
+    about:
+      "Every program, organization, stipend and deadline for GSoC, LFX Mentorship and Outreachy in one place, re-verified twice a day, with an AI guide, interview practice and deadline emails.",
+    image: "/images/11_opensourcex_card.jpg",
+    link: "https://opensource-x.vercel.app",
+    buttonLabel: "Live Demo",
+  },
+  {
+    name: "Collabry",
+    category: "Learn, Build and Launch Together",
+    about:
+      "Find teammates with complementary skills, form role-based teams, chat in Slack-style Spaces and direct messages, meet on video and ship work you can show.",
+    image: "/images/12_collabry_card.jpg",
+    link: "https://joincollabry.vercel.app",
+    buttonLabel: "Live Demo",
+  },
+  {
     name: "ClubSphere",
     category: "Campus Management Platform",
     about:
