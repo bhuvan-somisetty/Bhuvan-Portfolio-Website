@@ -47,7 +47,7 @@ const projects: Project[] = [
     name: "Open Source Contributions",
     category: "SDK & Developer Tools",
     about:
-      "Contribution work across Hiero SDK, Harbor Satellite, and Jaeger UI involving pull requests, documentation, workflows, API design, and developer experience.",
+      "Pull requests, reviews, documentation and developer-experience work across Jam, MetaCall core, gittuf and GRASS GIS: 250+ merged PRs in open source programs.",
     image: "/images/04_open_source_card.jpg",
   },
   {

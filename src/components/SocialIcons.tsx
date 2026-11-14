@@ -14,8 +14,8 @@ const SocialIcons = () => {
 
   const handleDownloadResume = () => {
     const link = document.createElement("a");
-    link.href = "/images/Bhuvan_Somisetty_Resume.png";
-    link.download = "Bhuvan_Somisetty_Resume.png";
+    link.href = "/Bhuvan_Somisetty_Resume.pdf";
+    link.download = "Bhuvan_Somisetty_Resume.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -116,7 +116,7 @@ const SocialIcons = () => {
         isOpen={isModalOpen}
         title="Resume"
         subtitle="Professional Resume"
-        pages={["/images/Bhuvan_Somisetty_Resume.png"]}
+        pages={["/images/Bhuvan_Somisetty_Resume_page1.png"]}
         currentPageIndex={0}
         onClose={() => setIsModalOpen(false)}
         onDownload={handleDownloadResume}

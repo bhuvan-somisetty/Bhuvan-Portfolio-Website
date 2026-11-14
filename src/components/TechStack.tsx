@@ -7,9 +7,9 @@ import {
   SiPython, SiJavascript, SiTypescript, SiHtml5, SiCss,
   SiReact, SiExpo, SiNodedotjs, SiExpress, SiPostgresql, SiMysql,
   SiMongodb, SiDocker, SiLinux, SiVercel, SiJest, SiFigma, SiPostman,
-  SiCanva, SiNumpy, SiPandas, SiScikitlearn, SiCncf, SiHarbor,
+  SiCanva, SiNumpy, SiPandas, SiScikitlearn,
   SiGoogle, SiGithub, SiGithubactions, SiGit, SiTailwindcss,
-  SiAxios, SiJsonwebtokens, SiJaeger, SiC
+  SiAxios, SiJsonwebtokens, SiC
 } from "react-icons/si";
 import { FaDatabase, FaBrain, FaRobot, FaLock, FaGlobe, FaMobileAlt, FaCodeBranch, FaSearch, FaSortAmountDown } from "react-icons/fa";
 import { FaAws } from "react-icons/fa6";
@@ -22,36 +22,19 @@ import { GoPlay } from "react-icons/go";
 interface Skill {
   name: string;
   category: string;
-  level: "Expert" | "Advanced" | "Intermediate" | "Learning";
+  level?: "Expert" | "Advanced" | "Intermediate" | "Learning";
   color: string;
   icon: any;
   projects: string[];
 }
 
-interface ProjectDetail {
-  name: string;
-  tagline: string;
-  overview: string;
-  problemSolved: string;
-  techStack: { name: string; icon: any; color: string }[];
-  features: string[];
-  architecture: string;
-  database: string;
-  apis: string;
-  auth: string;
-  deployment: string;
-  skillsDemonstrated: string[];
-  github?: string;
-  live?: string;
-}
-
-// 75 Skills Database
+// Skills Database
 const SKILLS: Skill[] = [
   // Programming Languages
-  { name: "Python", category: "Programming Languages", level: "Advanced", color: "#3776ab", icon: SiPython, projects: ["AlphaGuard AI", "Alarm & Reminder API System", "Akiyam Solutions Internship"] },
+  { name: "Python", category: "Programming Languages", level: "Advanced", color: "#3776ab", icon: SiPython, projects: ["AlphaGuard AI", "Alarm & Reminder API System"] },
   { name: "JavaScript", category: "Programming Languages", level: "Expert", color: "#f7df1e", icon: SiJavascript, projects: ["ClubSphere", "AlphaGuard AI", "QR Complaint & Feedback System", "Nexaris", "ResumeIQ Analyzer", "NeoNexus Internship"] },
   { name: "TypeScript", category: "Programming Languages", level: "Advanced", color: "#3178c6", icon: SiTypescript, projects: ["Nexaris", "NeoNexus Internship"] },
-  { name: "SQL", category: "Programming Languages", level: "Advanced", color: "#0078d4", icon: FaDatabase, projects: ["ClubSphere", "AlphaGuard AI", "QR Complaint & Feedback System", "ResumeIQ Analyzer", "Labmentix Internship"] },
+  { name: "SQL", category: "Programming Languages", level: "Advanced", color: "#0078d4", icon: FaDatabase, projects: ["ClubSphere", "AlphaGuard AI", "QR Complaint & Feedback System", "ResumeIQ Analyzer"] },
   { name: "C", category: "Programming Languages", level: "Intermediate", color: "#a8b9cc", icon: SiC, projects: ["Data Structures & Algorithms (Academic)"] },
 
   // Frontend
@@ -73,32 +56,32 @@ const SKILLS: Skill[] = [
 
   // Databases
   { name: "PostgreSQL", category: "Databases", level: "Advanced", color: "#336791", icon: SiPostgresql, projects: ["ClubSphere", "AlphaGuard AI", "ResumeIQ Analyzer"] },
-  { name: "MySQL", category: "Databases", level: "Advanced", color: "#4479a1", icon: SiMysql, projects: ["QR Complaint & Feedback System", "Labmentix Internship"] },
-  { name: "MongoDB", category: "Databases", level: "Advanced", color: "#47a248", icon: SiMongodb, projects: ["ClubSphere", "Labmentix Internship"] },
+  { name: "MySQL", category: "Databases", level: "Advanced", color: "#4479a1", icon: SiMysql, projects: ["QR Complaint & Feedback System"] },
+  { name: "MongoDB", category: "Databases", level: "Advanced", color: "#47a248", icon: SiMongodb, projects: ["ClubSphere"] },
   { name: "Database Design", category: "Databases", level: "Advanced", color: "#f59e0b", icon: FaDatabase, projects: ["ClubSphere", "AlphaGuard AI", "QR Complaint & Feedback System", "ResumeIQ Analyzer"] },
 
   // AI & Machine Learning
-  { name: "NumPy", category: "AI & Machine Learning", level: "Advanced", color: "#013243", icon: SiNumpy, projects: ["Akiyam Solutions Internship", "AI Model Prototypes"] },
-  { name: "Pandas", category: "AI & Machine Learning", level: "Advanced", color: "#150458", icon: SiPandas, projects: ["Akiyam Solutions Internship", "Data Processing Workflows"] },
-  { name: "Scikit-Learn", category: "AI & Machine Learning", level: "Intermediate", color: "#f7931e", icon: SiScikitlearn, projects: ["Akiyam Solutions Internship", "Predictive Analytics"] },
+  { name: "NumPy", category: "AI & Machine Learning", level: "Advanced", color: "#013243", icon: SiNumpy, projects: ["AI Model Prototypes"] },
+  { name: "Pandas", category: "AI & Machine Learning", level: "Advanced", color: "#150458", icon: SiPandas, projects: ["Data Processing Workflows"] },
+  { name: "Scikit-Learn", category: "AI & Machine Learning", level: "Intermediate", color: "#f7931e", icon: SiScikitlearn, projects: ["Predictive Analytics"] },
   { name: "LangChain", category: "AI & Machine Learning", level: "Intermediate", color: "#ffffff", icon: FaBrain, projects: ["AlphaGuard AI Context Engine"] },
   { name: "RAG", category: "AI & Machine Learning", level: "Intermediate", color: "#7c3aed", icon: TbVector, projects: ["AlphaGuard AI (Retrieval-Augmented Generation)"] },
   { name: "LLM Applications", category: "AI & Machine Learning", level: "Advanced", color: "#ec4899", icon: FaRobot, projects: ["AlphaGuard AI", "ResumeIQ Analyzer"] },
   { name: "Prompt Engineering", category: "AI & Machine Learning", level: "Advanced", color: "#14b8a6", icon: TbPrompt, projects: ["AlphaGuard AI", "ResumeIQ Analyzer"] },
-  { name: "Deep Learning Fundamentals", category: "AI & Machine Learning", level: "Intermediate", color: "#8b5cf6", icon: TbBrain, projects: ["Akiyam Solutions Internship"] },
-  { name: "Computer Vision Fundamentals", category: "AI & Machine Learning", level: "Intermediate", color: "#3b82f6", icon: TbBrain, projects: ["Akiyam Solutions Internship"] },
+  { name: "Deep Learning Fundamentals", category: "AI & Machine Learning", level: "Intermediate", color: "#8b5cf6", icon: TbBrain, projects: [] },
+  { name: "Computer Vision Fundamentals", category: "AI & Machine Learning", level: "Intermediate", color: "#3b82f6", icon: TbBrain, projects: [] },
   { name: "Gemini API", category: "AI & Machine Learning", level: "Advanced", color: "#1a73e8", icon: SiGoogle, projects: ["AlphaGuard AI", "ResumeIQ Analyzer"] },
-  { name: "AI Systems", category: "AI & Machine Learning", level: "Advanced", color: "#8b5cf6", icon: FaBrain, projects: ["AlphaGuard AI", "ResumeIQ Analyzer", "Akiyam Solutions Internship"] },
+  { name: "AI Systems", category: "AI & Machine Learning", level: "Advanced", color: "#8b5cf6", icon: FaBrain, projects: ["AlphaGuard AI", "ResumeIQ Analyzer"] },
   { name: "ATS Analysis", category: "AI & Machine Learning", level: "Advanced", color: "#10b981", icon: VscChecklist, projects: ["ResumeIQ Analyzer"] },
 
   // Cloud & DevOps
-  { name: "Docker", category: "Cloud & DevOps", level: "Intermediate", color: "#2496ed", icon: SiDocker, projects: ["Open Source Harbor", "Labmentix Internship"] },
-  { name: "AWS", category: "Cloud & DevOps", level: "Intermediate", color: "#ff9900", icon: FaAws, projects: ["Labmentix Internship"] },
-  { name: "Linux", category: "Cloud & DevOps", level: "Advanced", color: "#fcc624", icon: SiLinux, projects: ["Open Source Harbor", "Open Source Jaeger", "System Administration"] },
+  { name: "Docker", category: "Cloud & DevOps", level: "Intermediate", color: "#2496ed", icon: SiDocker, projects: ["Open Source Contributions"] },
+  { name: "AWS", category: "Cloud & DevOps", level: "Intermediate", color: "#ff9900", icon: FaAws, projects: [] },
+  { name: "Linux", category: "Cloud & DevOps", level: "Advanced", color: "#fcc624", icon: SiLinux, projects: ["Open Source Contributions", "System Administration"] },
   { name: "Git", category: "Cloud & DevOps", level: "Expert", color: "#f05032", icon: SiGit, projects: ["All Projects", "Open Source Contributions"] },
   { name: "GitHub", category: "Cloud & DevOps", level: "Expert", color: "#ffffff", icon: SiGithub, projects: ["All Projects", "Open Source Contributions"] },
-  { name: "GitHub Actions", category: "Cloud & DevOps", level: "Advanced", color: "#2088ff", icon: SiGithubactions, projects: ["Open Source Harbor", "Open Source Jaeger", "CI/CD Setup"] },
-  { name: "CI/CD Pipelines", category: "Cloud & DevOps", level: "Advanced", color: "#10b981", icon: TbSettingsAutomation, projects: ["Open Source Harbor", "Open Source Jaeger", "Labmentix Internship"] },
+  { name: "GitHub Actions", category: "Cloud & DevOps", level: "Advanced", color: "#2088ff", icon: SiGithubactions, projects: ["Open Source Contributions", "CI/CD Setup"] },
+  { name: "CI/CD Pipelines", category: "Cloud & DevOps", level: "Advanced", color: "#10b981", icon: TbSettingsAutomation, projects: ["Open Source Contributions"] },
   { name: "Render", category: "Cloud & DevOps", level: "Advanced", color: "#46e3b7", icon: GoPlay, projects: ["Alarm & Reminder API System"] },
   { name: "Vercel", category: "Cloud & DevOps", level: "Expert", color: "#ffffff", icon: SiVercel, projects: ["ClubSphere", "AlphaGuard AI", "Nexaris", "ResumeIQ Analyzer"] },
 
@@ -116,10 +99,12 @@ const SKILLS: Skill[] = [
   { name: "Problem Solving", category: "Computer Science Fundamentals", level: "Expert", color: "#ec4899", icon: FaBrain, projects: ["Technical Challenges", "LeetCode Solutions"] },
 
   // Open Source & Collaboration
-  { name: "CNCF", category: "Open Source & Collaboration", level: "Advanced", color: "#0086ff", icon: SiCncf, projects: ["Harbor Contributions", "Jaeger UI Contributions"] },
-  { name: "Harbor", category: "Open Source & Collaboration", level: "Advanced", color: "#60a5fa", icon: SiHarbor, projects: ["LFX Mentorship (Satellite Integrations & Dev Tooling)"] },
-  { name: "Jaeger", category: "Open Source & Collaboration", level: "Advanced", color: "#10b981", icon: SiJaeger, projects: ["Jaeger UI Dashboard Optimizations"] },
-  { name: "MifosPay", category: "Open Source & Collaboration", level: "Advanced", color: "#009688", icon: FaMobileAlt, projects: ["Mifos Initiative API & UI Fixes"] },
+  { name: "Jam", category: "Open Source & Collaboration", color: "#f7931a", icon: FaCodeBranch, projects: ["joinmarket-webui/jam (organization member)"] },
+  { name: "MetaCall core", category: "Open Source & Collaboration", color: "#60a5fa", icon: FaCodeBranch, projects: ["metacall/core"] },
+  { name: "gittuf", category: "Open Source & Collaboration", color: "#10b981", icon: SiGit, projects: ["gittuf/gittuf"] },
+  { name: "GRASS GIS", category: "Open Source & Collaboration", color: "#22c55e", icon: MdOutlineMap, projects: ["OSGeo/grass"] },
+  { name: "GSoC", category: "Open Source & Collaboration", color: "#4285f4", icon: SiGoogle, projects: ["Google Summer of Code"] },
+  { name: "Summer of Bitcoin", category: "Open Source & Collaboration", color: "#f7931a", icon: FaCodeBranch, projects: ["Summer of Bitcoin"] },
   { name: "LFX", category: "Open Source & Collaboration", level: "Advanced", color: "#3b82f6", icon: SiLinux, projects: ["Linux Foundation Mentorship Program"] },
   { name: "C4GT", category: "Open Source & Collaboration", level: "Advanced", color: "#f59e0b", icon: FaCodeBranch, projects: ["Code for Gov Tech fellowship"] },
   { name: "GSSoC", category: "Open Source & Collaboration", level: "Advanced", color: "#eab308", icon: FaCodeBranch, projects: ["GirlScript Summer of Code Contributions"] },
@@ -127,7 +112,7 @@ const SKILLS: Skill[] = [
   { name: "Pull Requests", category: "Open Source & Collaboration", level: "Expert", color: "#7b61ff", icon: VscGitPullRequest, projects: ["GitHub Contribution Workflow"] },
   { name: "Code Reviews", category: "Open Source & Collaboration", level: "Advanced", color: "#a78bfa", icon: VscChecklist, projects: ["Collaborative Peer Reviews"] },
   { name: "Documentation", category: "Open Source & Collaboration", level: "Expert", color: "#94a3b8", icon: VscChecklist, projects: ["API Reference Docs", "User Guides"] },
-  { name: "Bug Fixing", category: "Open Source & Collaboration", level: "Expert", color: "#ef4444", icon: MdOutlineBugReport, projects: ["Harbor, Jaeger UI, MifosPay Issues Resolving"] },
+  { name: "Bug Fixing", category: "Open Source & Collaboration", level: "Expert", color: "#ef4444", icon: MdOutlineBugReport, projects: ["Open Source Contributions"] },
   { name: "Developer Tooling", category: "Open Source & Collaboration", level: "Advanced", color: "#6366f1", icon: VscTerminalLinux, projects: ["CI/CD Pipelines", "Local Dev Environments Setup"] },
 
   // Tools & Platforms
@@ -147,167 +132,39 @@ const SKILLS: Skill[] = [
   { name: "Workflow Automation", category: "Tools & Platforms", level: "Advanced", color: "#3b82f6", icon: TbSettingsAutomation, projects: ["Alarm & Reminder API System", "GitHub Actions CI"] }
 ];
 
-// Recruiter snapshot stats
-const METRICS = [
-  { value: "AI/ML Intern", label: "Akiyam Solutions & Labmentix", desc: "Genomics Data Pipelines & AI Agent integrations" },
-  { value: "Open Source Contributor", label: "CNCF Harbor & Jaeger UI", desc: "Core toolings, API fixes & frontend enhancements" },
-  { value: "Backend & AI Systems", label: "Specialization Focus", desc: "Robust microservices, vector DBs & RAG systems" },
-  { value: "12+ Merged PRs", label: "Global Codebases", desc: "Contributions accepted in CNCF/LF upstream repositories" },
-  { value: "8+ Major Projects", label: "Deployed Portfolio", desc: "Full-stack web applications, APIs, and mobile systems" }
-];
-
-// Developer Journey Timeline
-const JOURNEY = [
-  { year: "2025", title: "Started B.Tech CSE (AI/ML)", desc: "Commenced undergraduate studies focusing on computer science, data structures, algorithms, and AI foundations." },
-  { year: "2025", title: "Built ClubSphere", desc: "Designed a comprehensive campus club management and event QR check-in platform using React, Node, and MongoDB." },
-  { year: "2025", title: "Built QR Complaint System", desc: "Developed a campus hostel feedback utility optimizing complaint tickets processing with MySQL databases." },
-  { year: "2026", title: "Started Open Source Contributions", desc: "Began contributing upstream, fixing issues, and configuring CI/CD configurations in open projects." },
-  { year: "2026", title: "Contributed to Harbor", desc: "Added integration tests, documentation improvements, and setup satellite configurations for Harbor registry." },
-  { year: "2026", title: "Contributed to Jaeger", desc: "Enhanced user dashboard UI, resolving developer workflow items for Jaeger tracing console." },
-  { year: "2026", title: "Contributed to MifosPay", desc: "Patched API connection problems, resolved mobile payment interface issues." },
-  { year: "2026", title: "AI/ML & SDE Internships", desc: "Interned at Akiyam (AI model engineering), Labmentix (backend optimization), and NeoNexus (web architectures)." },
-  { year: "2026", title: "Built ResumeIQ Analyzer", desc: "Architected an AI resume parser checking ATS scores and generating rewrites using Google Gemini APIs." },
-  { year: "2026", title: "Built AlphaGuard AI", desc: "Engineered an AI safety platform combining parental dashboards, geofencing coordinates, and AI-powered insights." }
-];
-
-// Featured Projects Detail
-const FEATURED_PROJECTS: ProjectDetail[] = [
-  {
-    name: "AlphaGuard AI",
-    tagline: "AI-Powered Child Safety Platform",
-    overview: "A premium child safety monitoring dashboard that integrates backend logic with AI engines to analyze digital behavior and track geographical coordinates.",
-    problemSolved: "Helps parents monitor safety metrics, receive location geofencing updates, and get automated AI summaries of potential alerts without manual checking.",
-    techStack: [
-      { name: "React", icon: SiReact, color: "#61dafb" },
-      { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
-      { name: "PostgreSQL", icon: SiPostgresql, color: "#336791" },
-      { name: "Gemini API", icon: SiGoogle, color: "#1a73e8" }
-    ],
-    features: [
-      "Real-time location geofencing with trigger alert zones",
-      "Automated safety insight generation from behavioral logs",
-      "Parental dashboard control panel with device toggles",
-      "Secure backend data stream utilizing REST APIs"
-    ],
-    architecture: "Express microservices handling geofence coordinates and scheduling cron jobs for LLM data aggregation.",
-    database: "PostgreSQL with spatial indexes for location history coordinates caching.",
-    apis: "REST endpoints for device data ingestion and Gemini API SDK calls.",
-    auth: "Secured token sessions.",
-    deployment: "Vercel production storefront linked with custom backend servers.",
-    skillsDemonstrated: ["AI Systems", "Backend Engineering", "Location Tracking", "Geofencing", "Database Design"],
-    github: "https://github.com/bhuvan-somisetty/ChildShield",
-    live: "https://alphaguard-v2.vercel.app/"
-  },
-  {
-    name: "ResumeIQ Analyzer",
-    tagline: "Intelligent ATS Scoring Engine",
-    overview: "An AI-powered ATS analyzer parsing documents and comparing them to job descriptions to find skill gaps and recommend corrections.",
-    problemSolved: "Allows applicants to immediately verify if their resume aligns with specific target roles, highlighting missing keywords automatically.",
-    techStack: [
-      { name: "React", icon: SiReact, color: "#61dafb" },
-      { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
-      { name: "Express.js", icon: SiExpress, color: "#828282" },
-      { name: "Gemini API", icon: SiGoogle, color: "#1a73e8" }
-    ],
-    features: [
-      "PDF parsing extraction using optimized text algorithms",
-      "Immediate ATS scoring matching keyword density",
-      "Actionable recommendations with text rewrite drafts",
-      "Clean UI display for side-by-side comparison"
-    ],
-    architecture: "Text extraction pipeline feeding a prompt context to Gemini model APIs.",
-    database: "PostgreSQL caching past candidate scans to compile trends.",
-    apis: "REST APIs with document upload streams.",
-    auth: "User access control.",
-    deployment: "Vercel frontend production build.",
-    skillsDemonstrated: ["ATS Analysis", "LLM Applications", "Prompt Engineering", "Gemini API", "API Design"],
-    github: "https://github.com/bhuvan-somisetty/resumeiq-ai",
-    live: "https://resumeiq-ai-eight.vercel.app/"
-  },
-  {
-    name: "ClubSphere",
-    tagline: "Campus Management Portal",
-    overview: "An all-in-one campus platform enabling organizations to register, publish event announcements, and track student attendance.",
-    problemSolved: "Eliminates paper sheets and manual data collection, shifting event coordination onto digital check-in systems.",
-    techStack: [
-      { name: "React", icon: SiReact, color: "#61dafb" },
-      { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
-      { name: "MongoDB", icon: SiMongodb, color: "#47a248" },
-      { name: "REST APIs", icon: TbApi, color: "#ff6b35" }
-    ],
-    features: [
-      "Dynamic QR code generator linked to active event sessions",
-      "Real-time attendance counting dashboard",
-      "Secure organizer management dashboards",
-      "Push announcements system for campus updates"
-    ],
-    architecture: "Node Express REST architecture handling QR session tokens.",
-    database: "MongoDB collections structuring student IDs, event maps, and schedules.",
-    apis: "Internal REST routes managing database writes.",
-    auth: "JWT secure cookies authentication.",
-    deployment: "Vercel web production build.",
-    skillsDemonstrated: ["QR Integration", "Database Design", "Authentication", "REST APIs", "Backend Development"],
-    github: "https://github.com/bhuvan-somisetty/CLUBSPHERE_",
-    live: "https://clubsphere-two.vercel.app/"
-  },
-  {
-    name: "QR Complaint Management System",
-    tagline: "Campus Utility ticket manager",
-    overview: "A feedback collector allowing students to scan area QR codes and file facility requests directly to campus staff.",
-    problemSolved: "Shortens time to fix hostel and dining hall problems by routing tickets immediately to correct maintenance categories.",
-    techStack: [
-      { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
-      { name: "Express.js", icon: SiExpress, color: "#828282" },
-      { name: "MySQL", icon: SiMysql, color: "#4479a1" },
-      { name: "REST APIs", icon: TbApi, color: "#ff6b35" }
-    ],
-    features: [
-      "Locational QR code targets mapping campus halls",
-      "Categorized ticket routing with urgency markers",
-      "Administrative dashboard checking issue resolutions",
-      "Student notification log reporting ticket states"
-    ],
-    architecture: "Server-side Express controllers handling complaint status updates.",
-    database: "MySQL relational design tracking complaints, categories, and staff.",
-    apis: "Endpoints for submission, status reviews, and admin toggles.",
-    auth: "Token validation.",
-    deployment: "Render servers hosting API streams, Vercel frontend storefront.",
-    skillsDemonstrated: ["Database Design", "Express.js", "API Design", "Authentication"],
-    github: "https://github.com/bhuvan-somisetty/Hostel-Mess-Feedback-System",
-    live: "https://psthostel.vercel.app/"
-  }
-];
-
-// Open Source impact database
+// Open Source organizations
 const OPEN_SOURCE = [
   {
-    org: "CNCF Harbor",
-    role: "LFX Mentorship Contributor",
-    desc: "Contributed to harbor-satellite setups and local developer tooling configurations.",
+    org: "Jam",
+    role: "Organization Member & Contributor",
+    desc: "joinmarket-webui/jam: the web interface for JoinMarket.",
     impacts: [
-      "Added Docker registry testing setups to verify satellite communication stability.",
-      "Configured automated workflow checks validating pull request styles and syntax.",
-      "Wrote reference documentation explaining installation steps for local sandbox environments."
+      "Member of the joinmarket-webui organization and its implementation contributors team.",
+      "Reviews and pull requests go through the maintainers' process."
     ]
   },
   {
-    org: "CNCF Jaeger",
-    role: "Jaeger UI Contributor",
-    desc: "Refactored parts of the query tracing UI component console to improve developer experience.",
+    org: "MetaCall core",
+    role: "Open Source Contributor",
+    desc: "metacall/core: a polyglot runtime for calling functions across programming languages.",
     impacts: [
-      "Patched interface bugs, resolving layout inconsistencies on tracing panels.",
-      "Assisted in configuring automated checks confirming UI styles during bundle phases.",
-      "Refined tracing console documentation guidelines."
+      "Open source contributor to the core repository."
     ]
   },
   {
-    org: "Mifos Initiative",
-    role: "MifosPay Contributor",
-    desc: "Helped resolve client authentication bugs and layout errors on payment screens.",
+    org: "gittuf",
+    role: "Open Source Contributor",
+    desc: "gittuf/gittuf: a security layer for Git repositories with signed policies for who can change what.",
     impacts: [
-      "Resolved mobile screen overlaps, ensuring fluid display on multiple Android resolutions.",
-      "Patched local server API responses handling user connection states.",
-      "Maintained unit test checks validating authentication modules."
+      "Open source contributor to the gittuf repository."
+    ]
+  },
+  {
+    org: "GRASS GIS",
+    role: "Open Source Contributor",
+    desc: "OSGeo/grass: open source geospatial processing and analysis engine from OSGeo.",
+    impacts: [
+      "Open source contributor to the GRASS GIS repository."
     ]
   }
 ];
@@ -356,15 +213,12 @@ const TechStack = () => {
   const [activeCategory, setActiveCategory] = useState("All");
   const [sortOrder, setSortOrder] = useState("default");
   
-  // Mapping explorer state (Project-to-Skill Mapping)
-  const [activeMapProject, setActiveMapProject] = useState(0);
-
   // Skill Tooltip State
   const [hoveredSkill, setHoveredSkill] = useState<Skill | null>(null);
 
   useEffect(() => {
     const projTarget = 8;
-    const prsTarget = 12;
+    const prsTarget = 250;
     const techTarget = SKILLS.length;
 
     let proj = 0;
@@ -404,7 +258,7 @@ const TechStack = () => {
     if (sortOrder === "proficiency") {
       // Custom sorting based on levels
       const levelWeight = { Expert: 4, Advanced: 3, Intermediate: 2, Learning: 1 };
-      return levelWeight[b.level] - levelWeight[a.level];
+      return (b.level ? levelWeight[b.level] : 0) - (a.level ? levelWeight[a.level] : 0);
     }
     return 0; // default order
   });
@@ -419,7 +273,7 @@ const TechStack = () => {
             Developer <span>Impact Showcase</span>
           </h2>
           <p className="ts-subtitle">
-            An overview of technical depth, engineering trajectory, open source contributions, and production-tested systems.
+            A quick overview of experience, open source contributions and the technologies behind my projects.
           </p>
         </div>
 
@@ -429,16 +283,16 @@ const TechStack = () => {
           <div className="snapshot-grid">
             <div className="snapshot-card glass-panel">
               <div className="snapshot-badge">Role</div>
-              <h4>AI / ML Intern</h4>
-              <p>Akiyam Solutions & Labmentix</p>
-              <span className="snapshot-detail">Building genomics workflows & fine-tuning AI logic pipelines</span>
+              <h4>Software Development Intern</h4>
+              <p>NeoNexus Innovations LLP</p>
+              <span className="snapshot-detail">Built scalable React, TypeScript and Node.js web apps; improved performance by 25%</span>
             </div>
             
             <div className="snapshot-card glass-panel">
               <div className="snapshot-badge">Open Source</div>
-              <h4>CNCF Contributor</h4>
-              <p>Harbor & Jaeger UI</p>
-              <span className="snapshot-detail">Mentee and contributor with merged PRs in CNCF registry upstream</span>
+              <h4>Open Source Contributor</h4>
+              <p>Jam, MetaCall core, gittuf & GRASS GIS</p>
+              <span className="snapshot-detail">Contributions across LFX Mentorship, C4GT, GSoC, Summer of Bitcoin, GSSoC and SSoC</span>
             </div>
 
             <div className="snapshot-card glass-panel">
@@ -451,123 +305,9 @@ const TechStack = () => {
             <div className="snapshot-card glass-panel">
               <div className="snapshot-value">{countState.prs}+</div>
               <h4>Merged Pull Requests</h4>
-              <p>Across Open Repositories</p>
-              <span className="snapshot-detail">Code updates merged in global CNCF & payment library codebases</span>
+              <p>Across Open Source Programs</p>
+              <span className="snapshot-detail">Pull requests merged across open source programs and organizations</span>
             </div>
-
-            <div className="snapshot-card glass-panel">
-              <div className="snapshot-value">{countState.projects}</div>
-              <h4>Major Deployed Projects</h4>
-              <p>Real-World Applications</p>
-              <span className="snapshot-detail">Campus check-ins, safety dashboards, and ATS scanners</span>
-            </div>
-          </div>
-        </div>
-
-        {/* SECTION 2 — WHAT I'M BUILDING (Spotlight Card) */}
-        <div className="section-block">
-          <div className="spotlight-card glass-panel">
-            <div className="spotlight-header">
-              <div className="spotlight-indicator">
-                <span className="pulse-dot"></span>
-                Currently Building
-              </div>
-              <h3>AlphaGuard AI</h3>
-            </div>
-            <p className="spotlight-description">
-              AI-powered Child Safety Platform focused on monitoring, location intelligence, safety alerts, parental controls, and AI-powered insights.
-            </p>
-            <div className="spotlight-focus">
-              <h4>Current Focus Areas:</h4>
-              <div className="focus-tags">
-                <span className="focus-tag">AI Systems</span>
-                <span className="focus-tag">Backend Engineering</span>
-                <span className="focus-tag">Open Source</span>
-                <span className="focus-tag">Developer Tooling</span>
-                <span className="focus-tag">Scalable Web Applications</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* SECTION 3 — DEVELOPER JOURNEY (Timeline) */}
-        <div className="section-block">
-          <h3 className="section-title-tag">Developer Journey Timeline</h3>
-          <div className="journey-timeline">
-            <div className="timeline-track"></div>
-            {JOURNEY.map((item, idx) => (
-              <div className="timeline-node" key={idx}>
-                <div className="timeline-dot-wrapper">
-                  <div className="timeline-dot"></div>
-                </div>
-                <div className="timeline-content glass-panel">
-                  <div className="timeline-year">{item.year}</div>
-                  <h4>{item.title}</h4>
-                  <p>{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* SECTION 4 — FEATURED PROJECTS */}
-        <div className="section-block">
-          <h3 className="section-title-tag">Featured Projects & Tech Stacks</h3>
-          <div className="featured-projects-grid">
-            {FEATURED_PROJECTS.map((proj, idx) => (
-              <div className="project-detail-card glass-panel" key={idx}>
-                <div className="proj-header-row">
-                  <h4>{proj.name}</h4>
-                  <div className="proj-links-wrapper">
-                    {proj.github && (
-                      <a href={proj.github} target="_blank" rel="noopener noreferrer" className="proj-link-btn" aria-label="View Source Code">
-                        <SiGithub /> Code
-                      </a>
-                    )}
-                    {proj.live && (
-                      <a href={proj.live} target="_blank" rel="noopener noreferrer" className="proj-link-btn" aria-label="View Live Demo">
-                        <TbExternalLink /> Live Demo
-                      </a>
-                    )}
-                  </div>
-                </div>
-                <div className="proj-tagline">{proj.tagline}</div>
-                
-                <div className="proj-info-block">
-                  <h5>Overview</h5>
-                  <p>{proj.overview}</p>
-                </div>
-
-                <div className="proj-info-block">
-                  <h5>Problem Solved</h5>
-                  <p>{proj.problemSolved}</p>
-                </div>
-
-                <div className="proj-info-block">
-                  <h5>Core Tech Stack</h5>
-                  <div className="proj-tech-badges">
-                    {proj.techStack.map((tech) => {
-                      const Icon = tech.icon;
-                      return (
-                        <span className="tech-badge" key={tech.name} style={{ "--tech-color": tech.color } as React.CSSProperties}>
-                          <Icon className="tech-badge-icon" /> {tech.name}
-                        </span>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                <div className="proj-info-block">
-                  <h5>Architecture Highlights</h5>
-                  <p className="architecture-text">{proj.architecture}</p>
-                  <ul className="arch-specs">
-                    <li><strong>Database:</strong> {proj.database}</li>
-                    <li><strong>APIs:</strong> {proj.apis}</li>
-                    <li><strong>Deployment:</strong> {proj.deployment}</li>
-                  </ul>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
 
@@ -597,11 +337,15 @@ const TechStack = () => {
               <div className="programs-grid">
                 <div className="program-item">
                   <span className="prog-title">LFX Mentorship</span>
-                  <p>CNCF Harbor Satellite contributor focusing on Docker registry sandbox deployments.</p>
+                  <p>Linux Foundation mentorship program for open source contributors.</p>
                 </div>
                 <div className="program-item">
                   <span className="prog-title">C4GT Fellowship</span>
                   <p>Code for Gov Tech Fellow contributing to public digital infrastructure codebases.</p>
+                </div>
+                <div className="program-item">
+                  <span className="prog-title">GSoC & Summer of Bitcoin</span>
+                  <p>Open source summer programs.</p>
                 </div>
                 <div className="program-item">
                   <span className="prog-title">GSSoC & SSoC</span>
@@ -702,9 +446,11 @@ const TechStack = () => {
                           >
                             <div className="tooltip-header" style={{ "--glow-color": skill.color } as React.CSSProperties}>
                               <span className="tooltip-name">{skill.name}</span>
-                              <span className={`tooltip-level-tag level-${skill.level.toLowerCase()}`}>
-                                {skill.level}
-                              </span>
+                              {skill.level && (
+                                <span className={`tooltip-level-tag level-${skill.level.toLowerCase()}`}>
+                                  {skill.level}
+                                </span>
+                              )}
                             </div>
                             <div className="tooltip-projects">
                               <div className="tooltip-proj-title">Used In:</div>
@@ -723,71 +469,6 @@ const TechStack = () => {
                 })}
               </AnimatePresence>
             </motion.div>
-          </div>
-        </div>
-
-        {/* SECTION 7 — PROJECT TO SKILL MAPPING */}
-        <div className="section-block">
-          <h3 className="section-title-tag">Project-to-Skill Mapping Explorer</h3>
-          <div className="project-mapping-explorer glass-panel">
-            <div className="mapping-tabs-sidebar">
-              {FEATURED_PROJECTS.map((proj, idx) => (
-                <button
-                  key={idx}
-                  className={`mapping-tab-btn ${activeMapProject === idx ? "tab-active" : ""}`}
-                  onClick={() => setActiveMapProject(idx)}
-                >
-                  0{idx + 1}. {proj.name}
-                </button>
-              ))}
-            </div>
-
-            <div className="mapping-detail-view">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeMapProject}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.2 }}
-                  className="mapping-content-panel"
-                >
-                  <h4>{FEATURED_PROJECTS[activeMapProject].name}</h4>
-                  <p className="mapping-tagline">{FEATURED_PROJECTS[activeMapProject].tagline}</p>
-                  
-                  <div className="mapping-specs-grid">
-                    <div className="spec-col">
-                      <h5>Architecture</h5>
-                      <p>{FEATURED_PROJECTS[activeMapProject].architecture}</p>
-                    </div>
-
-                    <div className="spec-col">
-                      <h5>Database Layer</h5>
-                      <p>{FEATURED_PROJECTS[activeMapProject].database}</p>
-                    </div>
-
-                    <div className="spec-col">
-                      <h5>APIs & Auth</h5>
-                      <p>{FEATURED_PROJECTS[activeMapProject].apis} <br /> {FEATURED_PROJECTS[activeMapProject].auth}</p>
-                    </div>
-
-                    <div className="spec-col">
-                      <h5>Deployment</h5>
-                      <p>{FEATURED_PROJECTS[activeMapProject].deployment}</p>
-                    </div>
-                  </div>
-
-                  <div className="mapping-skills-group">
-                    <h5>Demonstrated Engineering Skills:</h5>
-                    <div className="mapping-skills-badges">
-                      {FEATURED_PROJECTS[activeMapProject].skillsDemonstrated.map((s, index) => (
-                        <span className="mapping-skill-badge" key={index}>{s}</span>
-                      ))}
-                    </div>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
           </div>
         </div>
 

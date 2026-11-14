@@ -84,72 +84,19 @@ const Experience = () => {
     </svg>
   );
 
-  const LabmentixLogo = (
-    <svg width="34" height="34" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="labmentix-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#06b6d4" />
-          <stop offset="100%" stopColor="#10b981" />
-        </linearGradient>
-      </defs>
-      <path d="M16 4C19.3137 4 22 6.68629 22 10C22 13.3137 19.3137 16 16 16C12.6863 16 10 13.3137 10 10C10 6.68629 12.6863 4 16 4Z" fill="url(#labmentix-grad)" opacity="0.8" />
-      <path d="M16 16C19.3137 16 22 18.6863 22 22C22 25.3137 19.3137 28 16 28C12.6863 28 10 25.3137 10 22C10 18.6863 12.6863 16 16 16Z" fill="url(#labmentix-grad)" opacity="0.8" />
-      <path d="M10 16C10 12.6863 12.6863 10 16 10C19.3137 10 22 12.6863 22 16C22 19.3137 19.3137 22 16 22C12.6863 22 10 19.3137 10 16Z" fill="url(#labmentix-grad)" />
-    </svg>
-  );
-
-  const AkiyamLogo = (
-    <svg width="34" height="34" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="akiyam-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#f59e0b" />
-          <stop offset="100%" stopColor="#ef4444" />
-        </linearGradient>
-      </defs>
-      <path d="M8 24L16 8L24 24" stroke="url(#akiyam-grad)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M12 16H20" stroke="url(#akiyam-grad)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-
   const internships: Internship[] = [
     {
       company: "NeoNexus Innovations LLP",
       role: "Software Development Intern",
-      duration: "June 2026 – Present",
+      duration: "June 2026 – September 2026 · 3 months",
       logo: NeoNexusLogo,
       bullets: [
-        "Collaborating on the development of scalable web applications using React, TypeScript, and Node.js.",
-        "Enhancing user experiences by implementing responsive layouts, smooth transitions, and premium modern UI components.",
-        "Optimizing application loading times and API response handling, improving overall application performance by 25%.",
-        "Participating in code reviews and agile methodologies to ensure clean code structure and rapid deployment cycles.",
+        "Collaborated on the development of scalable web applications using React, TypeScript, and Node.js.",
+        "Enhanced user experiences by implementing responsive layouts, smooth transitions, and premium modern UI components.",
+        "Optimized application loading times and API response handling, improving overall application performance by 25%.",
+        "Participated in code reviews and agile methodologies to ensure clean code structure and rapid deployment cycles.",
       ],
       offerLetterPages: ["/images/offer_neonexus.png"],
-    },
-    {
-      company: "Labmentix",
-      role: "Software Development Intern",
-      duration: "May 2026 – Present",
-      logo: LabmentixLogo,
-      bullets: [
-        "Developing features for AI/ML powered platforms, integrating backend services and machine learning model predictions.",
-        "Creating RESTful APIs and securing authentication workflows, ensuring robust data handling and privacy compliance.",
-        "Collaborating with cross-functional teams to design database schemas and optimize query performance in MySQL/MongoDB.",
-        "Deploying cloud solutions and maintaining CI/CD pipelines to guarantee stable and continuous integration of new features.",
-      ],
-      offerLetterPages: ["/images/offer_labmentix.png"],
-    },
-    {
-      company: "Akiyam Solutions Pvt. Ltd.",
-      role: "AI Engineer Intern",
-      duration: "June 2026 – Present",
-      logo: AkiyamLogo,
-      bullets: [
-        "Architecting and fine-tuning artificial intelligence models to solve complex real-world data analysis challenges.",
-        "Designing and building intelligent data pipelines, preprocessings, and model evaluation modules in Python.",
-        "Leveraging transcription factor binding sites (TFBS) or advanced machine learning libraries to analyze genomic datasets.",
-        "Contributing to the production deployment of AI agents and maintaining high-performance inference services.",
-      ],
-      offerLetterPages: ["/images/offer_akiyam_1.png", "/images/offer_akiyam_2.png"],
     },
   ];
 
@@ -173,7 +120,7 @@ const Experience = () => {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
         >
-          Hands-on industry experience across software development, AI engineering, open-source collaboration, and real-world product development.
+          Industry experience building scalable web applications and shipping production-ready features.
         </motion.p>
 
         {/* Experience Grid */}
