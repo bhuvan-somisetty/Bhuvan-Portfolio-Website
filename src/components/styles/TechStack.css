@@ -485,12 +485,26 @@
 /* ─── SECTION 5 — OPEN SOURCE IMPACT DASHBOARD ────────────────── */
 .os-impact-dashboard {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
 }
 
+.os-impact-dashboard .os-programs-summary {
+  grid-column: 1 / -1;
+}
+
 .os-card {
-  padding: 30px 24px;
+  min-width: 0;
+}
+
+@media (max-width: 1024px) {
+  .os-impact-dashboard {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.os-card {
+  padding: 26px 20px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
