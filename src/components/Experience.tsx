@@ -1,7 +1,5 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 import "./styles/Experience.css";
-import DocumentViewerModal from "./DocumentViewerModal";
 
 interface Internship {
   company: string;
@@ -9,67 +7,10 @@ interface Internship {
   duration: string;
   bullets: string[];
   logo: React.ReactNode;
-  offerLetterPages: string[];
 }
 
 
 const Experience = () => {
-  const [modalState, setModalState] = useState<{
-    isOpen: boolean;
-    company: string;
-    pages: string[];
-    currentPageIndex: number;
-  }>({
-    isOpen: false,
-    company: "",
-    pages: [],
-    currentPageIndex: 0,
-  });
-
-
-  const openModal = (internship: Internship) => {
-    setModalState({
-      isOpen: true,
-      company: internship.company,
-      pages: internship.offerLetterPages,
-      currentPageIndex: 0,
-    });
-  };
-
-  const closeModal = () => {
-    setModalState((prev) => ({ ...prev, isOpen: false }));
-  };
-
-  const nextPage = () => {
-    if (modalState.currentPageIndex < modalState.pages.length - 1) {
-      setModalState((prev) => ({
-        ...prev,
-        currentPageIndex: prev.currentPageIndex + 1,
-      }));
-    }
-  };
-
-  const prevPage = () => {
-    if (modalState.currentPageIndex > 0) {
-      setModalState((prev) => ({
-        ...prev,
-        currentPageIndex: prev.currentPageIndex - 1,
-      }));
-    }
-  };
-
-  const handleDownload = () => {
-    const currentImage = modalState.pages[modalState.currentPageIndex];
-    const link = document.createElement("a");
-    link.href = currentImage;
-    const ext = currentImage.split('.').pop() || 'png';
-    link.download = `${modalState.company.replace(/[\s.]+/g, "_")}_Offer_Letter_Page_${modalState.currentPageIndex + 1}.${ext}`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
-
   // Sleek SVG Logos
   const NeoNexusLogo = (
     <svg width="34" height="34" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -96,7 +37,6 @@ const Experience = () => {
         "Optimized application loading times and API response handling, improving overall application performance by 25%.",
         "Participated in code reviews and agile methodologies to ensure clean code structure and rapid deployment cycles.",
       ],
-      offerLetterPages: ["/images/offer_neonexus.png"],
     },
   ];
 
@@ -151,38 +91,10 @@ const Experience = () => {
                   ))}
                 </ul>
               </div>
-
-              <div className="experience-action-wrapper">
-                <button
-                  className="experience-btn"
-                  onClick={() => openModal(internship)}
-                  aria-label={`View Offer Letter for ${internship.company}`}
-                >
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: "4px" }}>
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                    <polyline points="14 2 14 8 20 8"></polyline>
-                    <line x1="16" y1="13" x2="8" y2="13"></line>
-                    <line x1="16" y1="17" x2="8" y2="17"></line>
-                    <polyline points="10 9 9 9 8 9"></polyline>
-                  </svg>
-                  View Offer Letter
-                </button>
-              </div>
             </motion.div>
           ))}
         </div>
       </div>
-
-      <DocumentViewerModal
-        isOpen={modalState.isOpen}
-        title={`${modalState.company} - Offer Letter`}
-        pages={modalState.pages}
-        currentPageIndex={modalState.currentPageIndex}
-        onClose={closeModal}
-        onNextPage={nextPage}
-        onPrevPage={prevPage}
-        onDownload={handleDownload}
-      />
     </div>
   );
 };
