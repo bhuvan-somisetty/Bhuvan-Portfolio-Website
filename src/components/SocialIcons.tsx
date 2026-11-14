@@ -5,6 +5,7 @@ import {
   FaLinkedinIn,
 } from "react-icons/fa6";
 import "./styles/SocialIcons.css";
+import { SiLeetcode } from "react-icons/si";
 import { TbNotes } from "react-icons/tb";
 import HoverLinks from "./HoverLinks";
 import DocumentViewerModal from "./DocumentViewerModal";
@@ -91,6 +92,11 @@ const SocialIcons = () => {
         <span>
           <a href="https://www.linkedin.com/in/bhuvan-somisetty-951276362/" target="_blank">
             <FaLinkedinIn />
+          </a>
+        </span>
+        <span>
+          <a href="https://leetcode.com/u/bhuvan_somisetty/" target="_blank">
+            <SiLeetcode />
           </a>
         </span>
         <span>

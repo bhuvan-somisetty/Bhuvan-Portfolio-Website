@@ -40,6 +40,14 @@ const Contact = () => {
               Linkedin <MdArrowOutward />
             </a>
             <a
+              href="https://leetcode.com/u/bhuvan_somisetty/"
+              target="_blank"
+              data-cursor="disable"
+              className="contact-social"
+            >
+              LeetCode <MdArrowOutward />
+            </a>
+            <a
               href="https://www.instagram.com/your_bhu1?igsh=MWQ5dHF2OHU0Ymw2cw=="
               target="_blank"
               data-cursor="disable"
