@@ -63,3 +63,7 @@ This project is licensed under the Personal Portfolio License (PPL) v1.0.
 
 See the LICENSE file for full details
 
+
+## Deploys
+
+The Vercel project `portfolio-website` is connected to this repository. Every push to `main` deploys to production automatically.
