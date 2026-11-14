@@ -99,16 +99,6 @@ const SKILLS: Skill[] = [
   { name: "Problem Solving", category: "Computer Science Fundamentals", level: "Expert", color: "#ec4899", icon: FaBrain, projects: ["Technical Challenges", "LeetCode Solutions"] },
 
   // Open Source & Collaboration
-  { name: "Jam", category: "Open Source & Collaboration", color: "#f7931a", icon: FaCodeBranch, projects: ["joinmarket-webui/jam (organization member)"] },
-  { name: "MetaCall core", category: "Open Source & Collaboration", color: "#60a5fa", icon: FaCodeBranch, projects: ["metacall/core"] },
-  { name: "gittuf", category: "Open Source & Collaboration", color: "#10b981", icon: SiGit, projects: ["gittuf/gittuf"] },
-  { name: "GRASS GIS", category: "Open Source & Collaboration", color: "#22c55e", icon: MdOutlineMap, projects: ["OSGeo/grass"] },
-  { name: "GSoC", category: "Open Source & Collaboration", color: "#4285f4", icon: SiGoogle, projects: ["Google Summer of Code"] },
-  { name: "Summer of Bitcoin", category: "Open Source & Collaboration", color: "#f7931a", icon: FaCodeBranch, projects: ["Summer of Bitcoin"] },
-  { name: "LFX", category: "Open Source & Collaboration", level: "Advanced", color: "#3b82f6", icon: SiLinux, projects: ["Linux Foundation Mentorship Program"] },
-  { name: "C4GT", category: "Open Source & Collaboration", level: "Advanced", color: "#f59e0b", icon: FaCodeBranch, projects: ["Code for Gov Tech fellowship"] },
-  { name: "GSSoC", category: "Open Source & Collaboration", level: "Advanced", color: "#eab308", icon: FaCodeBranch, projects: ["GirlScript Summer of Code Contributions"] },
-  { name: "SSoC", category: "Open Source & Collaboration", level: "Advanced", color: "#f43f5e", icon: FaCodeBranch, projects: ["Social Summer of Code Contributions"] },
   { name: "Pull Requests", category: "Open Source & Collaboration", level: "Expert", color: "#7b61ff", icon: VscGitPullRequest, projects: ["GitHub Contribution Workflow"] },
   { name: "Code Reviews", category: "Open Source & Collaboration", level: "Advanced", color: "#a78bfa", icon: VscChecklist, projects: ["Collaborative Peer Reviews"] },
   { name: "Documentation", category: "Open Source & Collaboration", level: "Expert", color: "#94a3b8", icon: VscChecklist, projects: ["API Reference Docs", "User Guides"] },
