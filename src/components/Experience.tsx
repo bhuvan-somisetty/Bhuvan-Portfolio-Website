@@ -7,6 +7,7 @@ interface Internship {
   duration: string;
   bullets: string[];
   logo: React.ReactNode;
+  highlight?: boolean;
 }
 
 
@@ -56,6 +57,7 @@ const Experience = () => {
       role: "Hostel & Mess Affairs Secretary (Leadership)",
       duration: "February 2026 – Present",
       logo: LeadershipLogo,
+      highlight: true,
       bullets: [
         "Responsible for hostel and mess affairs for students.",
         "Built the QR Complaint and Feedback System so residents can report hostel and mess issues.",
@@ -91,7 +93,7 @@ const Experience = () => {
           {internships.map((internship, index) => (
             <motion.div
               key={internship.company}
-              className="experience-card"
+              className={`experience-card${internship.highlight ? " experience-card-highlight" : ""}`}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
@@ -106,6 +108,7 @@ const Experience = () => {
                   </div>
                 </div>
 
+                {internship.highlight && <span className="experience-badge">Leadership</span>}
                 <span className="experience-duration">{internship.duration}</span>
 
                 <ul className="experience-bullets">
